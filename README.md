@@ -4,6 +4,6 @@ This repository contains various scripts to setup and manage QA environement, SO
 
 The structure of the repository
 
-folder name : utility, purpose, say, SON QA setup, eg:- son_scripts
+folder names : utility, purpose, say, SON QA setup, eg:- son_scripts
 
 documentatation: son_scripts/docs 
