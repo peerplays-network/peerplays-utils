@@ -1,0 +1,145 @@
+sport_name,event_group_name,event_name,event_season,event_time,rules_name,rules_desc,bmg_name,bm_name
+American Football,NFL,NY Giants vs Green Bay,2017-2018,1504483200,NFL Rules v1.0,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,NY Giants
+,,,,,,,,Green Bay
+,,,,,NFL Rules v1.1,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 3,NY Giants +3
+,,,,,,,,Green Bay -3
+,,,,,NFL Rules v1.2,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 6,Over 6
+,,,,,,,,Under 6
+,,Carolina Panthers vs Denver Broncos,2017-2018,1505174400,NFL Rules v1.3,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Carolina Panthers
+,,,,,,,,Denver Broncos
+,,,,,NFL Rules v1.4,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 10,Carolina Panthers +10
+,,,,,,,,Denver Broncos -10
+,,,,,NFL Rules v1.5,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 7,Over 7
+,,,,,,,,Under 7
+,,Arizona Cardinals vs Houston Texans,2017-2018,1506643200,NFL Rules v1.6,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Arizona Cardinals
+,,,,,,,,Houston Texans
+,,,,,NFL Rules v1.7,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 9,Arizona Cardinals +9
+,,,,,,,,Houston Texans -9
+,,,,,NFL Rules v1.8,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 11,Over 11
+,,,,,,,,Under 11
+,NCAA,South Florida vs San Jose State,2017-2018,1505174400,NCAA Rules v1.0,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,South Florida
+,,,,,,,,San Jose State
+,,,,,NCAA Rules v1.1,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 7,South Florida +7
+,,,,,,,,San Jose State -7
+,,,,,NCAA Rules v1.2,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 9,Over 9
+,,,,,,,,Under 9
+,,Tennessee State vs Georgia State,2017-2018,1505001600,NCAA Rules v1.3,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Tennessee State
+,,,,,,,,Georgia State
+,,,,,NCAA Rules v1.4,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 4,Tennessee State +4
+,,,,,,,,Georgia State -4
+,,,,,NCAA Rules v1.5,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 5,Over 5
+,,,,,,,,Under 5
+,,Stanford vs Rice,2017-2018,1504828800,NCAA Rules v1.6,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Stanford
+,,,,,,,,Rice
+,,,,,NCAA Rules v1.7,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 4,Stanford +4
+,,,,,,,,Rice -4
+,,,,,NCAA Rules v1.8,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 6,Over 6
+,,,,,,,,Under 6
+Basketball,NBA,Dallas Mavericks vs Indiana Pacers,2017-2018,1504828800,NBA Rules v1.0,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Dallas Mavericks
+,,,,,,,,Indiana Pacers
+,,,,,NBA Rules v1.1,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 10,Dallas Mavericks +10
+,,,,,,,,Indiana Pacers -10
+,,,,,NBA Rules v1.2,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 15,Over 15
+,,,,,,,,Under 15
+,,Portland Trail Blazers vs Los Angeles Lakers,2017-2018,1506384000,NBA Rules v1.3,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Portland Trail Blazers
+,,,,,,,,Los Angeles Lakers
+,,,,,NBA Rules v1.4,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 7,Portland Trail Blazers +7
+,,,,,,,,Los Angeles Lakers -7
+,,,,,NBA Rules v1.5,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 8,Over 8
+,,,,,,,,Under 8
+,,Atlanta Hawks vs Chicago Bulls,2017-2018,1506211200,NBA Rules v1.6,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Atlanta Hawks
+,,,,,,,,Chicago Bulls
+,,,,,NBA Rules v1.7,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 2,Atlanta Hawks +2
+,,,,,,,,Chicago Bulls -2
+,,,,,NBA Rules v1.8,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 7,Over 7
+,,,,,,,,Under 7
+,PBA D-League,Tanduay Light vs San Beda,2017-2018,1505865600,PBA D-League Rules v1.0,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Tanduay Light
+,,,,,,,,San Beda
+,,,,,PBA D-League Rules v1.1,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 5,Tanduay Light +5
+,,,,,,,,San Beda -5
+,,,,,PBA D-League Rules v1.2,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 6,Over 6
+,,,,,,,,Under 6
+,,Blustar Detergent Dragons vs Racal Ceramica,2017-2018,1506556800,PBA D-League Rules v1.3,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Blustar Detergent Dragons
+,,,,,,,,Racal Ceramica
+,,,,,PBA D-League Rules v1.4,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 1,Blustar Detergent Dragons +1
+,,,,,,,,Racal Ceramica -1
+,,,,,PBA D-League Rules v1.5,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 8,Over 8
+,,,,,,,,Under 8
+,,Cafe France Bakers vs Tanduay Rhum Masters,2017-2018,1506124800,PBA D-League Rules v1.6,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Cafe France Bakers
+,,,,,,,,Tanduay Rhum Masters
+,,,,,PBA D-League Rules v1.7,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 10,Cafe France Bakers +10
+,,,,,,,,Tanduay Rhum Masters -10
+,,,,,PBA D-League Rules v1.8,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 12,Over 12
+,,,,,,,,Under 12
+Baseball,MLB,Miami Marlins vs Cincinnati Reds,2017-2018,1506643200,MLB Rules v1.0,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Miami Marlins
+,,,,,,,,Cincinnati Reds
+,,,,,MLB Rules v1.1,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 8,Miami Marlins +8
+,,,,,,,,Cincinnati Reds -8
+,,,,,MLB Rules v1.2,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 15,Over 15
+,,,,,,,,Under 15
+,,New York Yankees vs Seattle Mariners,2017-2018,1505088000,MLB Rules v1.3,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,New York Yankees
+,,,,,,,,Seattle Mariners
+,,,,,MLB Rules v1.4,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 1,New York Yankees +1
+,,,,,,,,Seattle Mariners -1
+,,,,,MLB Rules v1.5,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 9,Over 9
+,,,,,,,,Under 9
+,,Texas Ranges vs Tampa Bay Rays,2017-2018,1504569600,MLB Rules v1.6,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Texas Ranges
+,,,,,,,,Tampa Bay Rays
+,,,,,MLB Rules v1.7,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 5,Texas Ranges +5
+,,,,,,,,Tampa Bay Rays -5
+,,,,,MLB Rules v1.8,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 9,Over 9
+,,,,,,,,Under 9
+,NPB,Hiroshima Toyo Carp vs Hokkaido Nippon-Ham Fighters,2017-2018,1505520000,NPB Rules v1.0,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Hiroshima Toyo Carp
+,,,,,,,,Hokkaido Nippon-Ham Fighters
+,,,,,NPB Rules v1.1,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 4,Hiroshima Toyo Carp +4
+,,,,,,,,Hokkaido Nippon-Ham Fighters -4
+,,,,,NPB Rules v1.2,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 7,Over 7
+,,,,,,,,Under 7
+,,Yomiuri Giants vs Fukuoka SoftBank Hawks,2017-2018,1504569600,NPB Rules v1.3,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Yomiuri Giants
+,,,,,,,,Fukuoka SoftBank Hawks
+,,,,,NPB Rules v1.4,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 4,Yomiuri Giants +4
+,,,,,,,,Fukuoka SoftBank Hawks -4
+,,,,,NPB Rules v1.5,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 5,Over 5
+,,,,,,,,Under 5
+,,Yokohama Dena Baystars vs Chiba Lotte Marines,2017-2018,1506384000,NPB Rules v1.6,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Yokohama Dena Baystars
+,,,,,,,,Chiba Lotte Marines
+,,,,,NPB Rules v1.7,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 1,Yokohama Dena Baystars +1
+,,,,,,,,Chiba Lotte Marines -1
+,,,,,NPB Rules v1.8,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 6,Over 6
+,,,,,,,,Under 6
+Soccer,MLS,Vancouver Whitecaps FC vs Portland Timbers,2017-2018,1504310400,MLS Rules v1.0,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Vancouver Whitecaps FC
+,,,,,,,,Portland Timbers
+,,,,,MLS Rules v1.1,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 10,Vancouver Whitecaps FC +10
+,,,,,,,,Portland Timbers -10
+,,,,,MLS Rules v1.2,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 15,Over 15
+,,,,,,,,Under 15
+,,Seattle Sounders FC vs San Jose Earthquakes,2017-2018,1505347200,MLS Rules v1.3,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Seattle Sounders FC
+,,,,,,,,San Jose Earthquakes
+,,,,,MLS Rules v1.4,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 8,Seattle Sounders FC +8
+,,,,,,,,San Jose Earthquakes -8
+,,,,,MLS Rules v1.5,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 7,Over 7
+,,,,,,,,Under 7
+,,Philadelphia Union vs Columbus Crew SC,2017-2018,1505174400,MLS Rules v1.6,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Philadelphia Union
+,,,,,,,,Columbus Crew SC
+,,,,,MLS Rules v1.7,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 10,Philadelphia Union +10
+,,,,,,,,Columbus Crew SC -10
+,,,,,MLS Rules v1.8,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 5,Over 5
+,,,,,,,,Under 5
+,Premier League,Arsenal vs Liverpool,2017-2018,1506556800,Premier League Rules v1.0,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Arsenal
+,,,,,,,,Liverpool
+,,,,,Premier League Rules v1.1,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 10,Arsenal +10
+,,,,,,,,Liverpool -10
+,,,,,Premier League Rules v1.2,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 9,Over 9
+,,,,,,,,Under 9
+,,Manchester United vs Chelsea,2017-2018,1504742400,Premier League Rules v1.3,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Manchester United
+,,,,,,,,Chelsea
+,,,,,Premier League Rules v1.4,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 1,Manchester United +1
+,,,,,,,,Chelsea -1
+,,,,,Premier League Rules v1.5,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 13,Over 13
+,,,,,,,,Under 13
+,,Everton vs Stoke City,2017-2018,1505779200,Premier League Rules v1.6,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Moneyline,Everton
+,,,,,,,,Stoke City
+,,,,,Premier League Rules v1.7,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Spread +/- 9,Everton +9
+,,,,,,,,Stoke City -9
+,,,,,Premier League Rules v1.8,The winner will be the team with the most points at the end of the game.  The team with fewer points will not be the winner.,Over/ Under 7,Over 7
+,,,,,,,,Under 7
