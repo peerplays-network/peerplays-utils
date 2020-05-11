@@ -6,4 +6,4 @@ The structure of the repository
 
 folder names : utility, purpose, say, SON QA setup, eg:- son_scripts
 
-documentatation: son_scripts/docs 
+documentatation: son_scripts/docs or README.md in the top level folder
