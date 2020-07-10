@@ -87,6 +87,7 @@ class CaliperUtils {
             ['fabric', '@hyperledger/caliper-fabric'],
             ['fisco-bcos', '@hyperledger/caliper-fisco-bcos'],
             ['iroha', '@hyperledger/caliper-iroha'],
+            ['peerplays', '@hyperledger/caliper-peerplays'],
             ['sawtooth', '@hyperledger/caliper-sawtooth']
         ]);
     }
