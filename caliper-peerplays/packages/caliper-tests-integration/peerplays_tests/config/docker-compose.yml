@@ -17,9 +17,9 @@ services:
   node:
     build:
         context: .
-        dockerfile: caliper-ethereum-clique.Dockerfile
-    image: caliper-ethereum-clique
-    container_name: ethereum_clique
+        dockerfile: caliper-peerplays-clique.Dockerfile
+    image: caliper-peerplays-clique
+    container_name: peerplays_clique
     volumes:
       - ./keys:/root/.ethereum/keystore
     ports:
