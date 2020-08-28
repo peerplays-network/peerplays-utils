@@ -120,3 +120,8 @@ sut:
         1.4: &besu-latest
             packages: ['web3@1.2.2']
         latest: *besu-latest
+
+    peerplays:
+        1.4.4: &peerplays-latest
+            packages: ['peerplaysjs-lib@0.6.4']
+        latest: *peerplays-latest
