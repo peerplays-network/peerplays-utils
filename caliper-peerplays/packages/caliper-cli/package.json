@@ -32,6 +32,7 @@
         "@hyperledger/caliper-iroha": "0.4.0-unstable",
         "@hyperledger/caliper-sawtooth": "0.4.0-unstable",
         "@hyperledger/caliper-ethereum": "0.4.0-unstable",
+        "@hyperledger/caliper-peerplays": "0.4.0-unstable",
         "@hyperledger/caliper-fisco-bcos": "0.4.0-unstable",
         "yargs": "15.3.1"
     },

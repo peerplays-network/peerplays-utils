@@ -22,6 +22,7 @@ const packages = [
     'caliper-core',
     'caliper-burrow',
     'caliper-ethereum',
+    'caliper-peerplays',
     'caliper-fabric',
     'caliper-iroha',
     'caliper-sawtooth',

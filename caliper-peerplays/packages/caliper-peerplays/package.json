@@ -1,7 +1,7 @@
 {
     "name": "@hyperledger/caliper-peerplays",
     "description": "Peerplays connector for Caliper, enabling the running of performance benchmarks that interact with Peerplays",
-    "version": "0.3.2",
+    "version": "0.4.0-unstable",
     "repository": {
         "type": "git",
         "url": "https://github.com/hyperledger/caliper",
@@ -13,7 +13,7 @@
     "scripts": {
         "pretest": "npm run licchk",
         "licchk": "license-check-and-add",
-        "test": "npm run lint && npm run nyc",
+        "test": "npm run lint",
         "lint": "npx eslint .",
         "nyc": "nyc mocha --recursive -t 10000"
     },
@@ -22,7 +22,7 @@
         "npm": ">=5.6.0"
     },
     "dependencies": {
-        "@hyperledger/caliper-core": "0.3.2",
+        "@hyperledger/caliper-core": "0.4.0-unstable",
         "peerplaysjs-lib": "^0.6.4"
     },
     "devDependencies": {
@@ -49,7 +49,7 @@
         "file_types": [
             ".yml",
             ".md",
-            ".log"
+            "log"
         ],
         "insert_license": false,
         "license_formats": {
@@ -70,15 +70,15 @@
         }
     },
     "nyc": {
-        "include": [
-            "lib/configValidator.js"
+        "exclude": [
+            "lib/**"
         ],
         "reporter": [
             "text-summary",
             "html"
         ],
         "all": true,
-        "check-coverage": true,
+        "check-coverage": false,
         "statements": 1,
         "branches": 1,
         "functions": 1,

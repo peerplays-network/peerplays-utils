@@ -14,16 +14,16 @@
 
 'use strict';
 
-const PeerplaysConnector = require('./peerplays');
+const PeerplaysConnector = require('./peerplays-connector');
 
 /**
- * Constructs a Fabric connector.
+ * Constructs a Peerplays connector.
  * @param {number} workerIndex The zero-based index of the worker who wants to create an connector instance. -1 for the manager process.
  * @return {Promise<BlockchainConnector>} The initialized connector instance.
  * @async
  */
 async function connectorFactory(workerIndex) {
-    return new PeerplaysConnector(workerIndex);
+    return new PeerplaysConnector(workerIndex, 'peerplays');
 }
 
-module.exports.connectorFactory = connectorFactory;
+module.exports.ConnectorFactory = connectorFactory;

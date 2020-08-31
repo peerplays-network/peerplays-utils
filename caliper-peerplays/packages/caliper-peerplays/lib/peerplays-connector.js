@@ -14,8 +14,8 @@
 
 'use strict';
 
-const {BlockchainInterface, CaliperUtils, ConfigUtil} = require('@hyperledger/caliper-core');
-const logger = CaliperUtils.getLogger('peerplays');
+const {BlockchainConnector, CaliperUtils, ConfigUtil} = require('@hyperledger/caliper-core');
+const logger = CaliperUtils.getLogger('peerplays-connector');
 
 const PeerplaysConnector = class extends BlockchainConnector {
 

@@ -38,6 +38,7 @@
         "@hyperledger/caliper-fabric": "0.4.0-unstable",
         "@hyperledger/caliper-fisco-bcos": "0.4.0-unstable",
         "@hyperledger/caliper-iroha": "0.4.0-unstable",
+        "@hyperledger/caliper-peerplays": "0.4.0-unstable",
         "@hyperledger/caliper-sawtooth": "0.4.0-unstable",
         "yeoman-generator": "4.1.0",
         "yosay": "^2.0.1"

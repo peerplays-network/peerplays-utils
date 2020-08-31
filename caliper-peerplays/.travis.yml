@@ -35,6 +35,9 @@ jobs:
     - name: Ethereum integration test
       if: type = pull_request OR repo != hyperledger/caliper
       script: BENCHMARK=ethereum ./.travis/benchmark-integration-test-direct.sh
+    - name: Peerplays integration test
+      if: type = pull_request OR repo != hyperledger/caliper
+      script: BENCHMARK=peerplays ./.travis/benchmark-integration-test-direct.sh
     - name: HL Besu integration test
       if: type = pull_request OR repo != hyperledger/caliper
       script: BENCHMARK=besu ./.travis/benchmark-integration-test-direct.sh

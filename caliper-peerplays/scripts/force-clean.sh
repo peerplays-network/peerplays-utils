@@ -25,6 +25,7 @@ rm -rf ./packages/caliper-fisco-bcos/node_modules
 rm -rf ./packages/caliper-gui-dashboard/node_modules
 rm -rf ./packages/caliper-gui-server/node_modules
 rm -rf ./packages/caliper-iroha/node_modules
+rm -rf ./packages/caliper-peerplays/node_modules
 rm -rf ./packages/caliper-publish/node_modules
 rm -rf ./packages/caliper-sawtooth/node_modules
 rm -rf ./packages/caliper-tests-integration/node_modules
