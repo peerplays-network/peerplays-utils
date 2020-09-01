@@ -20,8 +20,5 @@ services:
         dockerfile: caliper-peerplays-clique.Dockerfile
     image: caliper-peerplays-clique
     container_name: peerplays_clique
-    volumes:
-      - ./keys:/root/.ethereum/keystore
     ports:
-      - 8546:8546
-    command: --unlock 0xc0A8e4D217eB85b812aeb1226fAb6F588943C2C2 --password /root/.ethereum/keystore/password --mine --minerthreads 2 --etherbase 0xc0A8e4D217eB85b812aeb1226fAb6F588943C2C2 --ws --wsaddr 0.0.0.0 --wsorigins='*' --wsapi admin,eth,miner,personal,web3 --allow-insecure-unlock --nodiscover --gasprice 1
+      - 8090:8090

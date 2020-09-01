@@ -52,12 +52,11 @@ const PeerplaysConnector = class extends BlockchainConnector {
     }
 
     async init(workerInit) {
-        throw new Error('init is not implemented for this blockchain system');
+        logger.info('PeerplaysConnector.init');
     }
 
     async installSmartContract() {
-        logger.info('Creating contracts...');
-        throw new Error('installSmartContract is not implemented for this blockchain system');
+        logger.info('PeerplaysConnector.installSmartContract');
     }
 
     async prepareWorkerArguments(number) {
@@ -69,27 +68,27 @@ const PeerplaysConnector = class extends BlockchainConnector {
     }
 
     async getContext(roundIndex, args) {
-        throw new Error('getContext is not implemented for this blockchain system');
+        logger.info('PeerplaysConnector.getContext');
     }
 
     async releaseContext() {
-        throw new Error('releaseContext is not implemented for this blockchain system');
+        logger.info('PeerplaysConnector.releaseContext');
     }
 
     async invokeSmartContract(contractID, contractVersion, invokeSettings, timeout) {
-        throw new Error('invokeSmartContract is not implemented for this blockchain system');
+        logger.info('PeerplaysConnector.invokeSmartContract');
     }
 
     async querySmartContract(contractID, contractVersion, querySettings, timeout) {
-        throw new Error('querySmartContract is not implemented for this blockchain system');
+        logger.info('PeerplaysConnector.querySmartContract');
     }
 
     async queryState(context, contractID, contractVer, key, fcn) {
-        throw new Error('queryState is not implemented for this blockchain system');
+        logger.info('PeerplaysConnector.queryState');
     }
 
     getDefaultTxStats(stats, results) {
-        throw new Error('getDefaultTxStats is not implemented for this blockchain system');
+        logger.info('PeerplaysConnector.getDefaultTxStats');
     }
 }
 

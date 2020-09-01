@@ -12,8 +12,4 @@
 # limitations under the License.
 #
 
-FROM edatasecuritynode/peerplays
-COPY ./data/ /root/
-VOLUME [ "/root/.ethereum/keystore/" ]
-RUN geth --nousb init /root/genesis.json && geth --nousb import /root/bc.dat
-ENTRYPOINT [ "geth" ]
+FROM datasecuritynode/peerplays
