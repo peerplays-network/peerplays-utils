@@ -17,6 +17,8 @@
 const {BlockchainConnector, CaliperUtils, ConfigUtil} = require('@hyperledger/caliper-core');
 const logger = CaliperUtils.getLogger('peerplays-connector');
 
+const {Apis, ChainStore} = require("peerplaysjs-lib");
+
 const PeerplaysConnector = class extends BlockchainConnector {
 
     constructor(workerIndex) {
@@ -33,15 +35,11 @@ const PeerplaysConnector = class extends BlockchainConnector {
 
     checkConfig(peerplaysConfig) {
         if (!peerplaysConfig.url) {
-            throw new Error(
-                    'No URL given'
-                    );
+            throw new Error('No URL given');
         }
 
         if (peerplaysConfig.url.toLowerCase().indexOf('http') === 0) {
-            throw new Error(
-                    'Must not use http(s) RPC connections'
-                    );
+            throw new Error('Must not use http(s) RPC connections');
         }
 
         //TODO: add validation logic for the rest of the configuration object
@@ -53,6 +51,16 @@ const PeerplaysConnector = class extends BlockchainConnector {
 
     async init(workerInit) {
         logger.info('PeerplaysConnector.init');
+
+        logger.info('Connecting to Peerplays endpoint "${endpoint}"');
+        const apiInstance = Apis.instance(this.peerplaysConfig.url, true);
+
+        try {
+            await apiInstance.init_promise;
+        } catch (err) {
+            logger.info('Peerplays connection failed, reason: "${err.message}"');
+            return;
+        }
     }
 
     async installSmartContract() {

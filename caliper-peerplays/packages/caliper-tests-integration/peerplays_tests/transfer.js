@@ -14,29 +14,43 @@
 
 'use strict';
 
-module.exports.info = 'Transfering funds between accounts';
+const {WorkloadModuleInterface} = require('@hyperledger/caliper-core');
 
-let bc, contx;
-let account_array;
+class PeerplaysTransferWorkload extends WorkloadModuleInterface {
+    constructor() {
+        super();
+        this.workerIndex = -1;
+        this.totalWorkers = -1;
+        this.roundIndex = -1;
+        this.roundArguments = undefined;
+        this.sutAdapter = undefined;
+        this.sutContext = undefined;
+    }
 
-module.exports.init = function (blockchain, context, args) {
-    const open = require('./open.js');
-    bc = blockchain;
-    contx = context;
-    account_array = open.account_array;
+    async initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext) {
+        this.workerIndex = workerIndex;
+        this.totalWorkers = totalWorkers;
+        this.roundIndex = roundIndex;
+        this.roundArguments = roundArguments;
+        this.sutAdapter = sutAdapter;
+        this.sutContext = sutContext;
+    }
 
-    return Promise.resolve();
-};
+    async submitTransaction() {
+        let txArgs = {
+            // TX arguments
+        };
 
-module.exports.run = function () {
-    // Select two random accounts
-    //const account1 = account_array[Math.floor(Math.random() * (account_array.length))];
-    //const account2 = account_array[Math.floor(Math.random() * (account_array.length))];
+        //return this.sutAdapter.invokeSmartContract('mycontract', 'v1', txArgs, 30);
+    }
 
-    //return bc.invokeSmartContract(contx, 'simple', 'v0', args, 10);
-};
+    async cleanupWorkloadModule() {
+        //
+    }
+}
 
-module.exports.end = function () {
-    // do nothing
-    return Promise.resolve();
-};
+function createWorkloadModule() {
+    return new PeerplaysTransferWorkload();
+}
+
+module.exports.createWorkloadModule = createWorkloadModule;

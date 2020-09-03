@@ -14,28 +14,43 @@
 
 'use strict';
 
-module.exports.info = 'Getting account list, creating new ones...';
+const {WorkloadModuleInterface} = require('@hyperledger/caliper-core');
 
-let bc, contx;
-let account_array = [];
+class PeerplaysOpenWorkload extends WorkloadModuleInterface {
+    constructor() {
+        super();
+        this.workerIndex = -1;
+        this.totalWorkers = -1;
+        this.roundIndex = -1;
+        this.roundArguments = undefined;
+        this.sutAdapter = undefined;
+        this.sutContext = undefined;
+    }
 
-module.exports.init = function (blockchain, context, args) {
+    async initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext) {
+        this.workerIndex = workerIndex;
+        this.totalWorkers = totalWorkers;
+        this.roundIndex = roundIndex;
+        this.roundArguments = roundArguments;
+        this.sutAdapter = sutAdapter;
+        this.sutContext = sutContext;
+    }
 
-    bc = blockchain;
-    contx = context;
+    async submitTransaction() {
+        let txArgs = {
+            // TX arguments
+        };
 
-    return Promise.resolve();
-};
+        //return this.sutAdapter.invokeSmartContract('mycontract', 'v1', txArgs, 30);
+    }
 
-module.exports.run = function () {
-    // Fetch the account list, create new ones...
+    async cleanupWorkloadModule() {
+        //
+    }
+}
 
-    //return bc.invokeSmartContract(contx, 'simple', 'v0', args, 100);
-};
+function createWorkloadModule() {
+    return new PeerplaysOpenWorkload();
+}
 
-module.exports.end = function () {
-    // do nothing
-    return Promise.resolve();
-};
-
-module.exports.account_array = account_array;
+module.exports.createWorkloadModule = createWorkloadModule;

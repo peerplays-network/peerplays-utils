@@ -13,3 +13,8 @@
 #
 
 FROM datasecuritynode/peerplays
+COPY config.ini /peerplays/witness_node_data_dir/
+COPY genesis.json /peerplays/
+EXPOSE 8090
+EXPOSE 9777
+ENTRYPOINT [ "/usr/local/bin/witness_node","--data-dir=/peerplays/witness_node_data_dir" ]
