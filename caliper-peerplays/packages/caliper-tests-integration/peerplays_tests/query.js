@@ -37,11 +37,60 @@ class PeerplaysQueryWorkload extends WorkloadModuleInterface {
     }
 
     async submitTransaction() {
-        let txArgs = {
-            // TX arguments
-        };
+        let args = [
+            {
+                api_name: 'database',
+                method: 'list_account_balances',
+                params: 'init0'
+            },
+            {
+                api_name: 'database',
+                method: 'list_account_balances',
+                params: 'init1'
+            },
+            {
+                api_name: 'database',
+                method: 'list_account_balances',
+                params: 'init2'
+            },
+            {
+                api_name: 'database',
+                method: 'list_account_balances',
+                params: 'init3'
+            },
+            {
+                api_name: 'database',
+                method: 'list_account_balances',
+                params: 'init4'
+            },
+            {
+                api_name: 'database',
+                method: 'list_account_balances',
+                params: 'init5'
+            },
+            {
+                api_name: 'database',
+                method: 'list_account_balances',
+                params: 'init6'
+            },
+            {
+                api_name: 'database',
+                method: 'list_account_balances',
+                params: 'init7'
+            },
+            {
+                api_name: 'database',
+                method: 'list_account_balances',
+                params: 'init8'
+            },
+            {
+                api_name: 'database',
+                method: 'list_account_balances',
+                params: 'init9'
+            }
+        ];
 
-        //return this.sutAdapter.invokeSmartContract('mycontract', 'v1', txArgs, 30);
+        await this.sutAdapter.sendRequests(args);
     }
 
     async cleanupWorkloadModule() {
