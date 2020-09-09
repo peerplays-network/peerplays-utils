@@ -39,6 +39,18 @@ const PeerplaysConnector = class extends BlockchainConnector {
         this.checkConfig(peerplaysConfig);
 
         this.peerplaysConfig = peerplaysConfig;
+        this.clientIndex = workerIndex;
+        this.context = undefined;
+
+        logger.info('Connecting to Peerplays endpoint ' + this.peerplaysConfig.url);
+        const apiInstance = Apis.instance(this.peerplaysConfig.url, true);
+        try {
+            apiInstance.init_promise;
+            this.apiInstance = apiInstance;
+        } catch (err) {
+            logger.error('init_promise failed, reason: ' + err.message);
+            return;
+        }
     }
 
     checkConfig(peerplaysConfig) {
@@ -53,39 +65,22 @@ const PeerplaysConnector = class extends BlockchainConnector {
         //TODO: add validation logic for the rest of the configuration object
     }
 
-    getType() {
-        return this.bcType;
-    }
-
     async init(workerInit) {
         logger.info('PeerplaysConnector.init');
-
-        logger.info('Connecting to Peerplays endpoint ' + this.peerplaysConfig.url);
-        const apiInstance = Apis.instance(this.peerplaysConfig.url, true);
-
-        try {
-            await apiInstance.init_promise;
-            this.apiInstance = apiInstance;
-        } catch (err) {
-            logger.info('Peerplays connection failed, reason: "${err.message}"');
-            return;
-        }
     }
 
     async installSmartContract() {
         logger.info('PeerplaysConnector.installSmartContract');
     }
 
-    async prepareWorkerArguments(number) {
-        let result = [];
-        for (let i = 0; i < number; i++) {
-            result[i] = {}; // as default, return an empty object for each client
-        }
-        return result;
-    }
-
     async getContext(roundIndex, args) {
-        logger.info('PeerplaysConnector.getContext');
+        let context = {
+            clientIndex: this.clientIndex,
+            apiInstance: this.apiInstance
+        };
+
+        this.context = context;
+        return context;
     }
 
     async releaseContext() {
@@ -98,7 +93,7 @@ const PeerplaysConnector = class extends BlockchainConnector {
 
         const onFailure = (err) => {
             status.SetStatusFail();
-            logger.error('Failed Peerplays call: ' + request);
+            logger.error('Failed Peerplays call: ' + JSON.stringify(request));
             logger.error(err);
         };
 
@@ -113,19 +108,19 @@ const PeerplaysConnector = class extends BlockchainConnector {
             let receipt = undefined;
             switch (request.api_name) {
                 case "database":
-                    receipt = await this.apiInstance.db_api().call(request.method, request.params);
+                    receipt = await this.apiInstance.db_api().exec(request.method, request.params);
                     break;
                 case "network_broadcast":
-                    receipt = await this.apiInstance.network_api().call(request.method, request.params);
+                    receipt = await this.apiInstance.network_api().exec(request.method, request.params);
                     break;
                 case "history":
-                    receipt = await this.apiInstance.history_api().call(request.method, request.params);
+                    receipt = await this.apiInstance.history_api().exec(request.method, request.params);
                     break;
                 case "crypto":
-                    receipt = await this.apiInstance.crypto_api().call(request.method, request.params);
+                    receipt = await this.apiInstance.crypto_api().exec(request.method, request.params);
                     break;
                 case "bookie":
-                    receipt = await this.apiInstance.bookie_api().call(request.method, request.params);
+                    receipt = await this.apiInstance.bookie_api().exec(request.method, request.params);
                     break;
                 default:
             }
@@ -137,21 +132,14 @@ const PeerplaysConnector = class extends BlockchainConnector {
         return status;
     }
 
-    async invokeSmartContract(contractID, contractVersion, invokeSettings, timeout) {
-        logger.info('PeerplaysConnector.invokeSmartContract');
+    async prepareWorkerArguments(number) {
+        let result = [];
+        for (let i = 0; i < number; i++) {
+            result[i] = {}; // as default, return an empty object for each client
+        }
+        return result;
     }
 
-    async querySmartContract(contractID, contractVersion, querySettings, timeout) {
-        logger.info('PeerplaysConnector.querySmartContract');
-    }
-
-    async queryState(context, contractID, contractVer, key, fcn) {
-        logger.info('PeerplaysConnector.queryState');
-    }
-
-    getDefaultTxStats(stats, results) {
-        logger.info('PeerplaysConnector.getDefaultTxStats');
-    }
 }
 
 module.exports = PeerplaysConnector;

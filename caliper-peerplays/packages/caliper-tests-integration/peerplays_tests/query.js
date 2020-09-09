@@ -40,53 +40,53 @@ class PeerplaysQueryWorkload extends WorkloadModuleInterface {
         let args = [
             {
                 api_name: 'database',
-                method: 'list_account_balances',
-                params: 'init0'
+                method: 'get_account_balances',
+                params: ['init0', []]
             },
             {
                 api_name: 'database',
-                method: 'list_account_balances',
-                params: 'init1'
+                method: 'get_account_balances',
+                params: ['init1', []]
             },
             {
                 api_name: 'database',
-                method: 'list_account_balances',
-                params: 'init2'
+                method: 'get_account_balances',
+                params: ['init2', []]
             },
             {
                 api_name: 'database',
-                method: 'list_account_balances',
-                params: 'init3'
+                method: 'get_account_balances',
+                params: ['init3', []]
             },
             {
                 api_name: 'database',
-                method: 'list_account_balances',
-                params: 'init4'
+                method: 'get_account_balances',
+                params: ['init4', []]
             },
             {
                 api_name: 'database',
-                method: 'list_account_balances',
-                params: 'init5'
+                method: 'get_account_balances',
+                params: ['init5', []]
             },
             {
                 api_name: 'database',
-                method: 'list_account_balances',
-                params: 'init6'
+                method: 'get_account_balances',
+                params: ['init6', []]
             },
             {
                 api_name: 'database',
-                method: 'list_account_balances',
-                params: 'init7'
+                method: 'get_account_balances',
+                params: ['init7', []]
             },
             {
                 api_name: 'database',
-                method: 'list_account_balances',
-                params: 'init8'
+                method: 'get_account_balances',
+                params: ['init8', []]
             },
             {
                 api_name: 'database',
-                method: 'list_account_balances',
-                params: 'init9'
+                method: 'get_account_balances',
+                params: ['init9', []]
             }
         ];
 
