@@ -17,7 +17,7 @@
 const {BlockchainConnector, CaliperUtils, ConfigUtil, TxStatus} = require('@hyperledger/caliper-core');
 const logger = CaliperUtils.getLogger('peerplays-connector');
 
-const {Apis, ApisInstance, ChainStore} = require("peerplaysjs-lib");
+const {Apis, ApisInstance, ChainStore, PrivateKey, TransactionBuilder} = require("peerplaysjs-lib");
 
 /**
  * @typedef {Object} PeerplaysInvoke
@@ -25,6 +25,7 @@ const {Apis, ApisInstance, ChainStore} = require("peerplaysjs-lib");
  * @property {string} api_name Required. The name of the API
  * @property {string} method Required. The name of the method to call
  * @property {string} params Required. Parameters of the method to call
+ * @property {string} readOnly Optional. Is method read only, or requires transaction
  */
 
 const PeerplaysConnector = class extends BlockchainConnector {
@@ -42,15 +43,42 @@ const PeerplaysConnector = class extends BlockchainConnector {
         this.clientIndex = workerIndex;
         this.context = undefined;
 
+        this.expirationOffset = 0;
+
         logger.info('Connecting to Peerplays endpoint ' + this.peerplaysConfig.url);
         const apiInstance = Apis.instance(this.peerplaysConfig.url, true);
-        try {
-            apiInstance.init_promise;
-            this.apiInstance = apiInstance;
-        } catch (err) {
-            logger.error('init_promise failed, reason: ' + err.message);
-            return;
-        }
+
+        apiInstance.init_promise
+                .then(() => {
+                    this.apiInstance = apiInstance;
+
+                    if (workerIndex == 0) {
+                        let request = {
+                            api_name: null,
+                            method: 'balance_claim',
+                            params: [
+                                {
+                                    fee: {
+                                        amount: 0,
+                                        asset_id: '1.3.0'
+                                    },
+                                    deposit_to_account: '1.2.18',
+                                    balance_to_claim: '1.15.0',
+                                    balance_owner_key: 'PPY6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV',
+                                    total_claimed: {
+                                        amount: 1000000000000000,
+                                        asset_id: '1.3.0'
+                                    }
+                                }
+                            ],
+                            readOnly: false
+                        };
+                        this._sendSingleRequest(request);
+                    }
+                })
+                .catch(error => {
+                    logger.error('init_promise failed, reason: ' + error.message);
+                });
     }
 
     checkConfig(peerplaysConfig) {
@@ -104,29 +132,47 @@ const PeerplaysConnector = class extends BlockchainConnector {
             status.SetStatusSuccess();
         };
 
-        try {
-            let receipt = undefined;
-            switch (request.api_name) {
-                case "database":
-                    receipt = await this.apiInstance.db_api().exec(request.method, request.params);
-                    break;
-                case "network_broadcast":
-                    receipt = await this.apiInstance.network_api().exec(request.method, request.params);
-                    break;
-                case "history":
-                    receipt = await this.apiInstance.history_api().exec(request.method, request.params);
-                    break;
-                case "crypto":
-                    receipt = await this.apiInstance.crypto_api().exec(request.method, request.params);
-                    break;
-                case "bookie":
-                    receipt = await this.apiInstance.bookie_api().exec(request.method, request.params);
-                    break;
-                default:
+        if (request.readOnly) {
+            try {
+                let receipt = undefined;
+                switch (request.api_name) {
+                    case "database":
+                        receipt = await this.apiInstance.db_api().exec(request.method, request.params);
+                        break;
+                    case "network_broadcast":
+                        receipt = await this.apiInstance.network_api().exec(request.method, request.params);
+                        break;
+                    case "history":
+                        receipt = await this.apiInstance.history_api().exec(request.method, request.params);
+                        break;
+                    case "crypto":
+                        receipt = await this.apiInstance.crypto_api().exec(request.method, request.params);
+                        break;
+                    case "bookie":
+                        receipt = await this.apiInstance.bookie_api().exec(request.method, request.params);
+                        break;
+                    default:
+                }
+                onSuccess(receipt);
+            } catch (err) {
+                onFailure(err);
             }
-            onSuccess(receipt);
-        } catch (err) {
-            onFailure(err);
+        } else {
+            let txBuilder = new TransactionBuilder();
+            let receipt = undefined;
+
+            try {
+                txBuilder.add_type_operation(request.method, request.params[0]);
+                await txBuilder.set_required_fees();
+                let PrivKey = PrivateKey.fromWif(this.peerplaysConfig.nathanPrvKey);
+                txBuilder.add_signer(PrivKey, PrivKey.toPublicKey());
+                const now = new Date();
+                txBuilder.set_expire_seconds(Math.floor(now.getTime() / 1000) + 30 * this.clientIndex + this.expirationOffset++);
+                [receipt] = await txBuilder.broadcast();
+                onSuccess(receipt);
+            } catch (err) {
+                onFailure(err);
+            }
         }
 
         return status;

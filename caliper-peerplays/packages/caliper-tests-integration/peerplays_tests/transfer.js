@@ -14,34 +14,41 @@
 
 'use strict';
 
-const {WorkloadModuleInterface} = require('@hyperledger/caliper-core');
+const {WorkloadModuleBase} = require('@hyperledger/caliper-core');
 
-class PeerplaysTransferWorkload extends WorkloadModuleInterface {
+class PeerplaysTransferWorkload extends WorkloadModuleBase {
     constructor() {
         super();
-        this.workerIndex = -1;
-        this.totalWorkers = -1;
-        this.roundIndex = -1;
-        this.roundArguments = undefined;
-        this.sutAdapter = undefined;
-        this.sutContext = undefined;
     }
 
     async initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext) {
-        this.workerIndex = workerIndex;
-        this.totalWorkers = totalWorkers;
-        this.roundIndex = roundIndex;
-        this.roundArguments = roundArguments;
-        this.sutAdapter = sutAdapter;
-        this.sutContext = sutContext;
+        await super.initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext);
     }
 
     async submitTransaction() {
-        let txArgs = {
-            // TX arguments
-        };
+        let args = [
+            {
+                api_name: null,
+                method: 'transfer',
+                params: [
+                    {
+                        fee: {
+                            amount: 2000000,
+                            asset_id: '1.3.0'
+                        },
+                        from: '1.2.18',
+                        to: '1.2.7',
+                        amount: {
+                            amount: 100000000,
+                            asset_id: '1.3.0'
+                        }
+                    }
+                ],
+                readOnly: false
+            }
+        ];
 
-        //return this.sutAdapter.invokeSmartContract('mycontract', 'v1', txArgs, 30);
+        await this.sutAdapter.sendRequests(args);
     }
 
     async cleanupWorkloadModule() {

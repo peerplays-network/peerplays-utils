@@ -27,16 +27,8 @@ test:
       rateControl: { type: 'fixed-feedback-rate', opts: { tps: 10, maximum_transaction_load: 5 } }
       workload:
           module: ./query.js
-          arguments:
-              numberOfAccounts: *accounts
-              accountPhasePrefix: *prefix
     - label: transfer
       txNumber: 100
       rateControl: { type: 'linear-rate', opts: { startingTps: 5, finishingTps: 20 } }
       workload:
           module: ./transfer.js
-          arguments:
-              accountPhasePrefix: *prefix
-              numberOfAccounts: *accounts
-              money: 100
-

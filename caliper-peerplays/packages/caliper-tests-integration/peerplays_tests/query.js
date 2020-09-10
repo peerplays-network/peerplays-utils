@@ -14,26 +14,15 @@
 
 'use strict';
 
-const {WorkloadModuleInterface} = require('@hyperledger/caliper-core');
+const {WorkloadModuleBase} = require('@hyperledger/caliper-core');
 
-class PeerplaysQueryWorkload extends WorkloadModuleInterface {
+class PeerplaysQueryWorkload extends WorkloadModuleBase {
     constructor() {
         super();
-        this.workerIndex = -1;
-        this.totalWorkers = -1;
-        this.roundIndex = -1;
-        this.roundArguments = undefined;
-        this.sutAdapter = undefined;
-        this.sutContext = undefined;
     }
 
     async initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext) {
-        this.workerIndex = workerIndex;
-        this.totalWorkers = totalWorkers;
-        this.roundIndex = roundIndex;
-        this.roundArguments = roundArguments;
-        this.sutAdapter = sutAdapter;
-        this.sutContext = sutContext;
+        await super.initializeWorkloadModule(workerIndex, totalWorkers, roundIndex, roundArguments, sutAdapter, sutContext);
     }
 
     async submitTransaction() {
@@ -41,52 +30,62 @@ class PeerplaysQueryWorkload extends WorkloadModuleInterface {
             {
                 api_name: 'database',
                 method: 'get_account_balances',
-                params: ['init0', []]
+                params: ['init0', []],
+                readOnly: true
             },
             {
                 api_name: 'database',
                 method: 'get_account_balances',
-                params: ['init1', []]
+                params: ['init1', []],
+                readOnly: true
             },
             {
                 api_name: 'database',
                 method: 'get_account_balances',
-                params: ['init2', []]
+                params: ['init2', []],
+                readOnly: true
             },
             {
                 api_name: 'database',
                 method: 'get_account_balances',
-                params: ['init3', []]
+                params: ['init3', []],
+                readOnly: true
             },
             {
                 api_name: 'database',
                 method: 'get_account_balances',
-                params: ['init4', []]
+                params: ['init4', []],
+                readOnly: true
             },
             {
                 api_name: 'database',
                 method: 'get_account_balances',
-                params: ['init5', []]
+                params: ['init5', []],
+                readOnly: true
             },
             {
                 api_name: 'database',
                 method: 'get_account_balances',
-                params: ['init6', []]
+                params: ['init6', []],
+                readOnly: true
             },
             {
                 api_name: 'database',
                 method: 'get_account_balances',
-                params: ['init7', []]
+                params: ['init7', []],
+                readOnly: true
             },
             {
                 api_name: 'database',
                 method: 'get_account_balances',
-                params: ['init8', []]
+                params: ['init8', []],
+                readOnly: true
             },
             {
                 api_name: 'database',
                 method: 'get_account_balances',
-                params: ['init9', []]
+                params: ['init9', []],
+                readOnly: true
             }
         ];
 
