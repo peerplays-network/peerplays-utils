@@ -1,4 +1,3 @@
-#!/bin/bash
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,22 +12,14 @@
 # limitations under the License.
 #
 
-# Exit on first error, print all commands.
-set -ev
-set -o pipefail
-
-# Barf if we don't recognize this test connector.
-if [[ "${BENCHMARK}" = "" ]]; then
-    echo You must set BENCHMARK to one of the desired test collections 'master-private-net|develop-private-net'
-    echo For example:
-    echo  export BENCHMARK=basic-private-net
-    exit 1
-fi
-
-TEST_DIR="${BENCHMARK}_tests"
-if [[ -d "${TEST_DIR}" ]]; then
-    "${TEST_DIR}"/run.sh
-else
-    echo "Unknown target benchmark ${BENCHMARK}"
-    exit 1
-fi
+version: "3"
+services:
+  node:
+    build:
+        context: .
+        dockerfile: caliper-peerplays-develop-clique.Dockerfile
+    image: caliper-peerplays-develop-clique
+    container_name: peerplays-develop_clique
+    ports:
+      - 8090:8090
+      - 9777:9777

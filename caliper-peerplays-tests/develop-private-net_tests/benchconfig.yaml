@@ -12,16 +12,16 @@
 # limitations under the License.
 #
 
----
-params:
-    numberOfAccounts: &accounts 100
-    accountPhasePrefix: &prefix phase3
-
 test:
     workers:
         type: local
         number: 2
     rounds:
+    - label: claim_balance
+      txNumber: 1
+      rateControl: { type: 'fixed-rate', opts: { tps: 1 } }
+      workload:
+          module: ./claim_balance.js
     - label: query
       txNumber: 200
       rateControl: { type: 'fixed-feedback-rate', opts: { tps: 10, maximum_transaction_load: 5 } }

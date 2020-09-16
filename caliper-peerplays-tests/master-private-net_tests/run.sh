@@ -13,22 +13,15 @@
 # limitations under the License.
 #
 
-# Exit on first error, print all commands.
-set -ev
-set -o pipefail
+# Print all commands.
+set -v
 
-# Barf if we don't recognize this test connector.
-if [[ "${BENCHMARK}" = "" ]]; then
-    echo You must set BENCHMARK to one of the desired test collections 'master-private-net|develop-private-net'
-    echo For example:
-    echo  export BENCHMARK=basic-private-net
-    exit 1
-fi
+# Grab the parent directory.
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd "${DIR}"
 
-TEST_DIR="${BENCHMARK}_tests"
-if [[ -d "${TEST_DIR}" ]]; then
-    "${TEST_DIR}"/run.sh
-else
-    echo "Unknown target benchmark ${BENCHMARK}"
-    exit 1
-fi
+npx caliper launch manager \
+        --caliper-bind-sut peerplays:latest \
+        --caliper-workspace ./ \
+        --caliper-benchconfig benchconfig.yaml \
+        --caliper-networkconfig networkconfig.json

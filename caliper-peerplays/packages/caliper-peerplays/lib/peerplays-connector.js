@@ -17,7 +17,7 @@
 const {BlockchainConnector, CaliperUtils, ConfigUtil, TxStatus} = require('@hyperledger/caliper-core');
 const logger = CaliperUtils.getLogger('peerplays-connector');
 
-const {Apis, ApisInstance, ChainStore, PrivateKey, TransactionBuilder} = require("peerplaysjs-lib");
+const {Apis, ApisInstance, ChainConfig, PrivateKey, TransactionBuilder} = require("peerplaysjs-lib");
 
 /**
  * @typedef {Object} PeerplaysInvoke
@@ -51,30 +51,7 @@ const PeerplaysConnector = class extends BlockchainConnector {
         apiInstance.init_promise
                 .then(() => {
                     this.apiInstance = apiInstance;
-
-                    if (workerIndex == 0) {
-                        let request = {
-                            api_name: null,
-                            method: 'balance_claim',
-                            params: [
-                                {
-                                    fee: {
-                                        amount: 0,
-                                        asset_id: '1.3.0'
-                                    },
-                                    deposit_to_account: '1.2.18',
-                                    balance_to_claim: '1.15.0',
-                                    balance_owner_key: 'PPY6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV',
-                                    total_claimed: {
-                                        amount: 1000000000000000,
-                                        asset_id: '1.3.0'
-                                    }
-                                }
-                            ],
-                            readOnly: false
-                        };
-                        this._sendSingleRequest(request);
-                    }
+                    ChainConfig.setPrefix(this.peerplaysConfig.coreAssetName);
                 })
                 .catch(error => {
                     logger.error('init_promise failed, reason: ' + error.message);
@@ -167,7 +144,7 @@ const PeerplaysConnector = class extends BlockchainConnector {
                 let PrivKey = PrivateKey.fromWif(this.peerplaysConfig.nathanPrvKey);
                 txBuilder.add_signer(PrivKey, PrivKey.toPublicKey());
                 const now = new Date();
-                txBuilder.set_expire_seconds(Math.floor(now.getTime() / 1000) + 30 * this.clientIndex + this.expirationOffset++);
+                txBuilder.set_expire_seconds(Math.floor(now.getTime() / 1000) + 43200 + 30 * this.clientIndex + this.expirationOffset++);
                 [receipt] = await txBuilder.broadcast();
                 onSuccess(receipt);
             } catch (err) {
