@@ -21,20 +21,21 @@ test:
     - label: init1
       txNumber: 100
       rateControl: { type: 'fixed-rate', opts: { tps: 20 } }
-      callback: ../init.js
+      workload:
+        module: ./../init.js
     - label: init2
       txNumber: 200
-      rateControl: { type: 'fixed-feedback-rate', opts: { tps: 20, unfinished_per_client: 5 } }
-      callback: ../init.js
+      rateControl: { type: 'fixed-feedback-rate', opts: { tps: 20, maximum_transaction_load: 5 } }
+      workload:
+        module: ./../init.js
     - label: query
       txNumber: 100
       rateControl: { type: 'linear-rate', opts: { startingTps: 10, finishingTps: 20 } }
-      callback: ../query.js
-observer:
-    interval: 1
-    type: local
-monitor:
-    interval: 1
-    type: ['process']
-    process:
-        processes: [{ command: 'node', arguments: 'fabricClientWorker.js', multiOutput: 'avg' }]
+      workload:
+        module: ./../query.js
+monitors:
+    resource:
+    - module: process
+      options:
+        interval: 3
+        processes: [{ command: 'node', arguments: 'caliper.js', multiOutput: 'avg' }]

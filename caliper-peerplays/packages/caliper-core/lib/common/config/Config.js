@@ -21,6 +21,12 @@ const nconf = require('nconf');
 nconf.formats.yaml = require('nconf-yaml');
 
 const keys = {
+    Auth: {
+        PrometheusPush: {
+            UserName: 'caliper-auth-prometheuspush-username',
+            Password: 'caliper-auth-prometheuspush-password'
+        }
+    },
     Bind: {
         Sut: 'caliper-bind-sut',
         Args: 'caliper-bind-args',
@@ -37,13 +43,23 @@ const keys = {
             Transparency: 'caliper-report-charting-transparency'
         }
     },
+    Progress: {
+        Reporting: {
+            Enabled: 'caliper-progress-reporting-enabled',
+            Interval: 'caliper-progress-reporting-interval'
+        }
+    },
+    Monitor: {
+        DefaultInterval: 'caliper-monitor-default-interval',
+        PrometheusScrapePort: 'caliper-monitor-prometheus-scrape-port'
+    },
     Workspace: 'caliper-workspace',
     ProjectConfig: 'caliper-projectconfig',
     UserConfig: 'caliper-userconfig',
     MachineConfig: 'caliper-machineconfig',
     BenchConfig: 'caliper-benchconfig',
     NetworkConfig: 'caliper-networkconfig',
-    TxUpdateTime: 'caliper-txupdatetime',
+    MonitorConfig: 'caliper-monitorconfig',
     LoggingRoot: 'caliper-logging',
     Logging: {
         Template: 'caliper-logging-template',
@@ -92,7 +108,9 @@ const keys = {
             Method: 'caliper-worker-communication-method',
             Address: 'caliper-worker-communication-address',
         },
-        MaxTxPromises: 'caliper-worker-maxtxpromises'
+        Update: {
+            Interval: 'caliper-worker-update-interval'
+        }
     },
     Flow: {
         Skip: {
@@ -114,15 +132,15 @@ const keys = {
         SleepAfter: {
             CreateChannel: 'caliper-fabric-sleepafter-createchannel',
             JoinChannel: 'caliper-fabric-sleepafter-joinchannel',
-            InstantiateChaincode: 'caliper-fabric-sleepafter-instantiatechaincode',
+            InstantiateContract: 'caliper-fabric-sleepafter-instantiatecontract',
         },
         Verify: {
             ProposalResponse: 'caliper-fabric-verify-proposalresponse',
             ReadWriteSets: 'caliper-fabric-verify-readwritesets',
         },
         Timeout: {
-            ChaincodeInstantiate: 'caliper-fabric-timeout-chaincodeinstantiate',
-            ChaincodeInstantiateEvent: 'caliper-fabric-timeout-chaincodeinstantiateevent',
+            ContractInstantiate: 'caliper-fabric-timeout-contractinstantiate',
+            ContractInstantiateEvent: 'caliper-fabric-timeout-contractinstantiateevent',
             InvokeOrQuery: 'caliper-fabric-timeout-invokeorquery',
         },
         LoadBalancing: 'caliper-fabric-loadbalancing',
@@ -132,10 +150,10 @@ const keys = {
         SkipCreateChannelPrefix: 'caliper-fabric-skipcreatechannel-',
         Gateway: {
             Discovery: 'caliper-fabric-gateway-discovery',
+            Enabled: 'caliper-fabric-gateway-enabled',
             EventStrategy: 'caliper-fabric-gateway-eventstrategy',
-            GatewayLocalHost: 'caliper-fabric-gateway-gatewaylocalhost',
+            LocalHost: 'caliper-fabric-gateway-localhost',
             QueryStrategy: 'caliper-fabric-gateway-querystrategy',
-            UseGateway: 'caliper-fabric-gateway-usegateway',
         }
     }
 };

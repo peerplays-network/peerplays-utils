@@ -27,13 +27,14 @@ describe ('benchmark configuration generator', () => {
     let dir, tmpConfigPath;
     let options = {
         subgenerator: 'benchmark',
-        chaincodeFunction: 'callback',
-        chaincodeArguments: '["args1", "args2", "args3"]',
+        contractFunction: 'workload',
+        contractArguments: '["args1", "args2", "args3"]',
         benchmarkName: 'x contract benchmark',
         benchmarkDescription: 'benchmark for contract x',
         workers: 10,
         label: 'function test',
-        chaincodeId: 'xContract',
+        contractId: 'xContract',
+        contractVersion: '1.0.0',
         txType: 'txDuration',
         rateController: 'fixed-rate',
         workspace: 'workspace'
@@ -49,7 +50,7 @@ describe ('benchmark configuration generator', () => {
             rounds: [
                 {
                     label: 'function test',
-                    chaincodeId: 'xContract',
+                    contractId: 'xContract',
                     txDuration: 30,
                     rateControl: {
                         type: 'fixed-rate',
@@ -57,12 +58,15 @@ describe ('benchmark configuration generator', () => {
                             tps: 10
                         }
                     },
-                    callback: 'benchmarks/callbacks/callback.js'
+                    workload: {
+                        module: 'benchmarks/workloads/workload.js',
+                        arguments: {
+                            contractId: 'xContract',
+                            contractVersion: '1.0.0'
+                        }
+                    }
                 }
             ]
-        },
-        monitor: {
-            type: [ 'none' ]
         }
     };
 
@@ -180,7 +184,7 @@ describe ('benchmark configuration generator', () => {
 
         const config = yaml.safeLoad(fs.readFileSync(tmpConfigPath),'utf8');
         const configStr = JSON.stringify(config);
-        const fileContains = configStr.includes('"workers":{"type":"local","number":5');
+        const fileContains = configStr.includes('"workers":{"type":"local","number":1');
 
         fileContains.should.equal(true);
     });
@@ -227,7 +231,7 @@ describe ('benchmark configuration generator', () => {
 
         const config = yaml.safeLoad(fs.readFileSync(tmpConfigPath),'utf8');
         const configStr = JSON.stringify(config);
-        const fileContains = configStr.includes('"txDuration":50');
+        const fileContains = configStr.includes('"txDuration":20');
 
         fileContains.should.equal(true);
     });

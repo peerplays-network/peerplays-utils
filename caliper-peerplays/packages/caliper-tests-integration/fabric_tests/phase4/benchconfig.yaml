@@ -21,20 +21,43 @@ test:
     - label: init1
       txNumber: 50
       rateControl: { type: 'fixed-rate', opts: { tps: 5 } }
-      callback: ../init.js
-    - label: query
+      workload:
+          module: ./../init.js
+          arguments:
+              marblePrefix: marbles_phase_4
+    - label: query1
       txNumber: 50
       rateControl: { type: 'linear-rate', opts: { startingTps: 5, finishingTps: 10 } }
-      callback: ../query.js
-observer:
-    interval: 1
-    type: prometheus
-monitor:
-    interval: 1
-    type: ['prometheus']
-    prometheus:
+      workload:
+        module: ./../query.js
+    - label: init2
+      txNumber: 50
+      rateControl: { type: 'fixed-rate', opts: { tps: 5 } }
+      workload:
+          module: ./../initByChannel.js
+          arguments:
+              marblePrefix: marbles_phase_4
+    - label: query2
+      txNumber: 50
+      rateControl: { type: 'linear-rate', opts: { startingTps: 5, finishingTps: 10 } }
+      workload:
+        module: ./../queryByChannel.js
+
+monitors:
+    transaction:
+    - module: logging
+      options:
+        loggerModuleName: txinfo
+        messageLevel: info
+    - module: prometheus-push
+      options:
+        pushInterval: 5
+        pushUrl: "http://localhost:9091"
+    resource:
+    - module: prometheus
+      options:
+        interval: 5
         url: "http://localhost:9090"
-        push_url: "http://localhost:9091"
         metrics:
             ignore: [prometheus, pushGateway, cadvisor, grafana, node-exporter]
             include:

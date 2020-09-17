@@ -17,9 +17,9 @@
 set -ev
 set -o pipefail
 
-# Barf if we don't recognize this test adaptor.
+# Barf if we don't recognize this test connector.
 if [[ "${BENCHMARK}" = "" ]]; then
-    echo You must set BENCHMARK to one of the desired test adaptors 'besu|ethereum|fabric|fisco-bcos|generator|sawtooth|iroha'
+    echo You must set BENCHMARK to one of the desired test adaptors 'besu|ethereum|fabric|fisco-bcos|generator|sawtooth|iroha|peerplays'
     echo For example:
     echo  export BENCHMARK=fabric
     exit 1

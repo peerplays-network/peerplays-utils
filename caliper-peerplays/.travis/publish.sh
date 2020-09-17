@@ -24,6 +24,7 @@ cp ./README.md ./packages/caliper-ethereum/README.md
 cp ./README.md ./packages/caliper-fabric/README.md
 cp ./README.md ./packages/caliper-fisco-bcos/README.md
 cp ./README.md ./packages/caliper-iroha/README.md
+cp ./README.md ./packages/caliper-peerplays/README.md
 cp ./README.md ./packages/caliper-sawtooth/README.md
 
 cd ./packages/caliper-publish/

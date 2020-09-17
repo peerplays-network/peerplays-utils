@@ -13,28 +13,34 @@
 #
 
 ---
+params:
+    numberOfAccounts: &accounts 100
+
 test:
     workers:
         type: local
         number: 2
     rounds:
     - label: create
-      txNumber: 100
+      txNumber: *accounts
       rateControl: { type: 'fixed-rate', opts: { tps: 10 } }
-      arguments:
-          txnPerBatch: 10
-      callback: create.js
+      workload:
+          module: ./create.js
+          arguments:
+              txnPerBatch: 10
     - label: query
       txNumber: 200
-      rateControl: { type: 'fixed-feedback-rate', opts: { tps: 10, unfinished_per_client: 5 } }
-      callback: query.js
+      rateControl: { type: 'fixed-feedback-rate', opts: { tps: 10, maximum_transaction_load: 5 } }
+      workload:
+          module: ./query.js
+          arguments:
+              numberOfAccounts: *accounts
     - label: transfer
       txNumber: 200
       rateControl: { type: 'linear-rate', opts: { startingTps: 5, finishingTps: 20 } }
-      arguments:
-          txnPerBatch: 10
-          money: '10.00'
-      callback: transfer.js
-observer:
-    interval: 1
-    type: local
+      workload:
+          module: ./transfer.js
+          arguments:
+              txnPerBatch: 10
+              numberOfAccounts: *accounts
+              money: '10.00'

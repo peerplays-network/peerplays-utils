@@ -24,7 +24,7 @@ cd "${DIR}"
 export CALIPER_PROJECTCONFIG=../caliper.yaml
 
 dispose () {
-    ${CALL_METHOD} launch master --caliper-workspace 'fabric/myWorkspace' --caliper-flow-only-end
+    ${CALL_METHOD} launch manager --caliper-workspace 'fabric/myWorkspace' --caliper-flow-only-end
 }
 
 # Install yo
@@ -37,11 +37,15 @@ cd ./config
 # back to this dir
 cd ${DIR}
 
+# needed, since the peer looks for the latest, which is no longer on dockerhub
+docker pull hyperledger/fabric-ccenv:1.4.7
+docker image tag hyperledger/fabric-ccenv:1.4.7 hyperledger/fabric-ccenv:latest
+
 # Run benchmark generator using generator defaults (specify invalid values for options)
-${GENERATOR_METHOD} -- --workspace 'myWorkspace' --chaincodeId 'mymarbles' --version 'v0' --chaincodeFunction 'queryMarblesByOwner' --chaincodeArguments '["Alice"]' --workers 'marbles' --benchmarkName 'A name for the marbles benchmark' --benchmarkDescription 'A description for the marbles benchmark' --label 'A label for the round' --rateController 'fixed-rate' --txType 'txDuration' --txDuration 'marbles'
+${GENERATOR_METHOD} -- --workspace 'myWorkspace' --contractId 'mymarbles' --contractVersion 'v0' --contractFunction 'queryMarblesByOwner' --contractArguments '["Alice"]' --workers 'marbles' --benchmarkName 'A name for the marbles benchmark' --benchmarkDescription 'A description for the marbles benchmark' --label 'A label for the round' --rateController 'fixed-rate' --txType 'txDuration' --txDuration 'marbles'
 # start network and run benchmark test
 cd ../
-${CALL_METHOD} launch master --caliper-workspace 'fabric/myWorkspace' --caliper-networkconfig 'networkconfig.yaml' --caliper-benchconfig 'benchmarks/config.yaml' --caliper-flow-skip-end
+${CALL_METHOD} launch manager --caliper-workspace 'fabric/myWorkspace' --caliper-networkconfig 'networkconfig.yaml' --caliper-benchconfig 'benchmarks/config.yaml' --caliper-flow-skip-end
 rc=$?
 if [[ ${rc} != 0 ]]; then
     echo "Failed start network";
@@ -53,11 +57,11 @@ fi
 cd ${DIR}
 # Run benchmark generator not using generator defaults
 rm -r myWorkspace/benchmarks
-${GENERATOR_METHOD} -- --workspace 'myWorkspace' --chaincodeId 'mymarbles' --version 'v0' --chaincodeFunction 'queryMarblesByOwner' --chaincodeArguments '["Alice"]' --workers 3 --benchmarkName 'A name for the marbles benchmark' --benchmarkDescription 'A description for the marbles benchmark' --label 'A label for the round' --rateController 'fixed-rate' --txType 'txDuration' --txDuration 30
+${GENERATOR_METHOD} -- --workspace 'myWorkspace' --contractId 'mymarbles' --contractVersion 'v0' --contractFunction 'queryMarblesByOwner' --contractArguments '["Alice"]' --workers 2 --benchmarkName 'A name for the marbles benchmark' --benchmarkDescription 'A description for the marbles benchmark' --label 'A label for the round' --rateController 'fixed-rate' --txType 'txDuration' --txDuration 10
 
 # Run benchmark test
 cd ../
-${CALL_METHOD} launch master --caliper-workspace 'fabric/myWorkspace' --caliper-networkconfig 'networkconfig.yaml' --caliper-benchconfig 'benchmarks/config.yaml' --caliper-flow-only-test
+${CALL_METHOD} launch manager --caliper-workspace 'fabric/myWorkspace' --caliper-networkconfig 'networkconfig.yaml' --caliper-benchconfig 'benchmarks/config.yaml' --caliper-flow-only-test
 rc=$?
 if [[ ${rc} != 0 ]]; then
     echo "Failed run benchmark";
@@ -67,7 +71,7 @@ if [[ ${rc} != 0 ]]; then
 fi
 
 # dispose network
-${CALL_METHOD} launch master --caliper-workspace 'fabric/myWorkspace' --caliper-networkconfig 'networkconfig.yaml' --caliper-benchconfig 'benchmarks/config.yaml' --caliper-flow-only-end
+${CALL_METHOD} launch manager --caliper-workspace 'fabric/myWorkspace' --caliper-networkconfig 'networkconfig.yaml' --caliper-benchconfig 'benchmarks/config.yaml' --caliper-flow-only-end
 rc=$?
 if [[ ${rc} != 0 ]]; then
     echo "Failed end network";

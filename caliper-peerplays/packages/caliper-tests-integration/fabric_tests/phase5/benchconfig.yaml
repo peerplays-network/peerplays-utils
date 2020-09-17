@@ -18,23 +18,28 @@ test:
         type: local
         number: 2
     rounds:
-    - label: init1
-      txNumber: 25
-      rateControl: { type: 'fixed-rate', opts: { tps: 5 } }
-      callback: ../init.js
-    - label: query
-      txNumber: 25
-      rateControl: { type: 'linear-rate', opts: { startingTps: 5, finishingTps: 10 } }
-      callback: ../query.js
-observer:
-    interval: 1
-    type: prometheus
-monitor:
-    interval: 1
-    type: ['prometheus']
-    prometheus:
+    - label: query1
+      txNumber: 50
+      rateControl: { type: 'fixed-rate', opts: { tps: 3 } }
+      workload:
+        module: ./../query.js
+    - label: query2
+      txDuration: 20
+      rateControl: { type: 'fixed-load', opts: { startTps: 10, transactionLoad: 20 } }
+      workload:
+        module: ./../queryByChannel.js
+
+monitors:
+    transaction:
+    - module: prometheus-push
+      options:
+        pushInterval: 5
+        pushUrl: "http://localhost:9091"
+    resource:
+    - module: prometheus
+      options:
+        interval: 5
         url: "http://localhost:9090"
-        push_url: "http://localhost:9091"
         metrics:
             ignore: [prometheus, pushGateway, cadvisor, grafana, node-exporter]
             include:
@@ -54,3 +59,11 @@ monitor:
                 metrics: [Max Memory (MB)]
             bar:
                 metrics: [all]
+    - module: process
+      options:
+        interval: 3
+        processes: [{ command: 'node', arguments: 'caliper.js', multiOutput: 'avg' }]
+    - module: docker
+      options:
+        interval: 4
+        containers: ['peer0.org1.example.com', 'peer0.org2.example.com', 'orderer0.example.com', 'orderer1.example.com']
