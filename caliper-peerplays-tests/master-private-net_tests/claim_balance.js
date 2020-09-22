@@ -48,6 +48,21 @@ class PeerplaysClaimBalanceWorkload extends WorkloadModuleBase {
                         }
                     ],
                     readOnly: false
+                },
+                {
+                    api_name: null,
+                    method: 'account_upgrade',
+                    params: [
+                        {
+                            fee: {
+                                amount: 1000000000,
+                                asset_id: '1.3.0'
+                            },
+                            account_to_upgrade: '1.2.18',
+                            upgrade_to_lifetime_member: true
+                        }
+                    ],
+                    readOnly: false
                 }
             ];
             await this.sutAdapter.sendRequests(args);
