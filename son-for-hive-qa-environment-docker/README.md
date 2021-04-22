@@ -111,7 +111,7 @@ cd peerplays-network
 
 ## Testing
 
-### Make payment to son-account on hive
+### Make deposit payment to son-account on Hive
 ```
 # @ Hive cli wallet
 # Execute the following commands
@@ -237,43 +237,68 @@ list_account_balances account05
 ## Output end
 ```
 
+### Make withdrawal payment to son-account on Peerplays
+```
+# @ Peerplays cli_wallet
+# Checkout the the account05 balances
 
+list_account_balances account05
 
+## Output will be similar to this
+50000000 TEST
+1000 HBD
+1000 HIVE
+1000000 PBTC
+1000000 PEOS
+1000000 PETH
+## Output end
 
+# Make the transfers to the son-account
+transfer account05 son-account 50 HBD null true
+transfer account05 son-account 50 HIVE null true
 
+# @ Peerplays witness
+# Checkout the the payment detection
+...
+1824010ms th_a       sidechain_net_handler.cpp:153 sidechain_event_data ] sidechain_event_data:
+1824010ms th_a       sidechain_net_handler.cpp:154 sidechain_event_data ]   timestamp:                2021-04-22T09:30:24
+1824010ms th_a       sidechain_net_handler.cpp:155 sidechain_event_data ]   block_num:                384
+1824010ms th_a       sidechain_net_handler.cpp:156 sidechain_event_data ]   sidechain:                peerplays
+1824010ms th_a       sidechain_net_handler.cpp:157 sidechain_event_data ]   sidechain_uid:            peerplays-f47cc98cb3aa0edb61856435b6521329c335762e-0
+1824011ms th_a       sidechain_net_handler.cpp:158 sidechain_event_data ]   sidechain_transaction_id: f47cc98cb3aa0edb61856435b6521329c335762e
+1824011ms th_a       sidechain_net_handler.cpp:159 sidechain_event_data ]   sidechain_from:           1.2.56
+1824011ms th_a       sidechain_net_handler.cpp:160 sidechain_event_data ]   sidechain_to:             1.2.19
+1824011ms th_a       sidechain_net_handler.cpp:161 sidechain_event_data ]   sidechain_currency:       1.3.2
+1824011ms th_a       sidechain_net_handler.cpp:162 sidechain_event_data ]   sidechain_amount:         50000
+1824011ms th_a       sidechain_net_handler.cpp:163 sidechain_event_data ]   peerplays_from:           1.2.56
+1824011ms th_a       sidechain_net_handler.cpp:164 sidechain_event_data ]   peerplays_to:             1.2.19
+1824011ms th_a       sidechain_net_handler.cpp:165 sidechain_event_data ]   peerplays_asset:          {"amount":2000000,"asset_id":"1.3.0"}
+...
+1827007ms th_a       sidechain_net_handler.cpp:153 sidechain_event_data ] sidechain_event_data:
+1827007ms th_a       sidechain_net_handler.cpp:154 sidechain_event_data ]   timestamp:                2021-04-22T09:30:27
+1827007ms th_a       sidechain_net_handler.cpp:155 sidechain_event_data ]   block_num:                385
+1827007ms th_a       sidechain_net_handler.cpp:156 sidechain_event_data ]   sidechain:                peerplays
+1827007ms th_a       sidechain_net_handler.cpp:157 sidechain_event_data ]   sidechain_uid:            peerplays-c037f636fdcc2e9fc6e7e214765950944c202330-0
+1827007ms th_a       sidechain_net_handler.cpp:158 sidechain_event_data ]   sidechain_transaction_id: c037f636fdcc2e9fc6e7e214765950944c202330
+1827007ms th_a       sidechain_net_handler.cpp:159 sidechain_event_data ]   sidechain_from:           1.2.56
+1827007ms th_a       sidechain_net_handler.cpp:160 sidechain_event_data ]   sidechain_to:             1.2.19
+1827007ms th_a       sidechain_net_handler.cpp:161 sidechain_event_data ]   sidechain_currency:       1.3.3
+1827007ms th_a       sidechain_net_handler.cpp:162 sidechain_event_data ]   sidechain_amount:         50000
+1827007ms th_a       sidechain_net_handler.cpp:163 sidechain_event_data ]   peerplays_from:           1.2.56
+1827007ms th_a       sidechain_net_handler.cpp:164 sidechain_event_data ]   peerplays_to:             1.2.19
+1827007ms th_a       sidechain_net_handler.cpp:165 sidechain_event_data ]   peerplays_asset:          {"amount":2000000,"asset_id":"1.3.0"}
 
+# @ Peerplays cli_wallet
+# Checkout the the account05 balances
 
+list_account_balances account05
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Output will be similar to this
+49999960 TEST
+950 HBD
+950 HIVE
+1000000 PBTC
+1000000 PEOS
+1000000 PETH
+## Output end
+```
