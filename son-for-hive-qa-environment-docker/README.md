@@ -50,6 +50,11 @@ The image does not use volumes, so no data is preserved between restarts. If the
 
 You will need at least 4 connections to the docker container.
 
+### Step 0: Start Docker container
+```
+docker run -p 0.0.0.0:2000:22 son-for-hive:latest
+```
+
 ### Step 1: Start Hive node
 ```
 ssh peerplays@127.0.0.1 -p 2000
@@ -70,7 +75,7 @@ cd hive-network
 # Make sure "Generated block #..." messages are popping up in Step 1 output. Do not execute before they do.
 # Execution will take some time, as Hive cli wallet executes single command per block
 
-./init-network.ch
+./init-network.sh
 
 ./cli_wallet -s ws://127.0.0.1:28090 -r 127.0.0.1:28091
 
@@ -192,7 +197,7 @@ transfer account05 son-account "1000.000 TBD" null true
 transfer account05 son-account "1000.000 TESTS" null true
 
 # @ Peerplays witness
-# Checkout the the payment detection
+# Checkout the payment detection
 ...
 3171299ms th_a       sidechain_net_handler.cpp:148 sidechain_event_data ] sidechain_event_data:
 3171299ms th_a       sidechain_net_handler.cpp:149 sidechain_event_data ]   timestamp:                2021-04-19T12:52:51
@@ -223,7 +228,7 @@ transfer account05 son-account "1000.000 TESTS" null true
 3177301ms th_a       sidechain_net_handler.cpp:160 sidechain_event_data ]   peerplays_asset:          {"amount":40000000,"asset_id":"1.3.0"}
 
 # @ Peerplays cli_wallet
-# Checkout the the account05 balances
+# Checkout the account05 balances
 
 list_account_balances account05
 
@@ -239,8 +244,59 @@ list_account_balances account05
 
 ### Make withdrawal payment to son-account on Peerplays
 ```
+# @ Hive cli_wallet
+# Checkout the son-account balances
+
+get_account son-account
+
+## Output will be similar to this
+{
+  "id": 6,
+  "name": "son-account",
+  "owner": {
+    "weight_threshold": 1,
+    "account_auths": [],
+    "key_auths": [[
+        "TST8kLKo9seYaJvuQSdwFd2YAi29VRdCVeLgd3E8A7PUFaKosYRGL",
+        1
+      ]
+    ]
+  },
+  ...
+  "balance": "4006795.000 TESTS",
+  "savings_balance": "0.000 TESTS",
+  "hbd_balance": "1003202.806 TBD",
+  ...
+}
+## Output end
+
+# Checkout the account05 balances
+
+get_account account05
+
+## Output will be similar to this
+{
+  "id": 27,
+  "name": "account05",
+  "owner": {
+    "weight_threshold": 1,
+    "account_auths": [],
+    "key_auths": [[
+        "TST7kSX3sEgT9NknjvTE5jEqSuHLFjLeMagfcGLvBC9mUCCKprmEa",
+        1
+      ]
+    ]
+  },
+  ...
+  "balance": "3995085.000 TESTS",
+  "savings_balance": "0.000 TESTS",
+  "hbd_balance": "996802.606 TBD",
+  ...
+}
+## Output end
+
 # @ Peerplays cli_wallet
-# Checkout the the account05 balances
+# Checkout the account05 balances
 
 list_account_balances account05
 
@@ -258,7 +314,7 @@ transfer account05 son-account 50 HBD null true
 transfer account05 son-account 50 HIVE null true
 
 # @ Peerplays witness
-# Checkout the the payment detection
+# Checkout the payment detection
 ...
 1824010ms th_a       sidechain_net_handler.cpp:153 sidechain_event_data ] sidechain_event_data:
 1824010ms th_a       sidechain_net_handler.cpp:154 sidechain_event_data ]   timestamp:                2021-04-22T09:30:24
@@ -289,7 +345,7 @@ transfer account05 son-account 50 HIVE null true
 1827007ms th_a       sidechain_net_handler.cpp:165 sidechain_event_data ]   peerplays_asset:          {"amount":2000000,"asset_id":"1.3.0"}
 
 # @ Peerplays cli_wallet
-# Checkout the the account05 balances
+# Checkout the account05 balances
 
 list_account_balances account05
 
@@ -300,5 +356,56 @@ list_account_balances account05
 1000000 PBTC
 1000000 PEOS
 1000000 PETH
+## Output end
+
+# @ Hive cli_wallet
+# Checkout the son-account balances
+
+get_account son-account
+
+## Output will be similar to this
+{
+  "id": 6,
+  "name": "son-account",
+  "owner": {
+    "weight_threshold": 1,
+    "account_auths": [],
+    "key_auths": [[
+        "TST8kLKo9seYaJvuQSdwFd2YAi29VRdCVeLgd3E8A7PUFaKosYRGL",
+        1
+      ]
+    ]
+  },
+  ...
+  "balance": "4006745.000 TESTS",    <- This one is decreased
+  "savings_balance": "0.000 TESTS",
+  "hbd_balance": "1003152.806 TBD",  <- This one is decreased
+  ...
+}
+## Output end
+
+# Checkout the account05 balances
+
+get_account account05
+
+## Output will be similar to this
+{
+  "id": 27,
+  "name": "account05",
+  "owner": {
+    "weight_threshold": 1,
+    "account_auths": [],
+    "key_auths": [[
+        "TST7kSX3sEgT9NknjvTE5jEqSuHLFjLeMagfcGLvBC9mUCCKprmEa",
+        1
+      ]
+    ]
+  },
+  ...
+  "balance": "3995135.000 TESTS",    <- This one is increased
+  "savings_balance": "0.000 TESTS",
+  "hbd_balance": "996852.606 TBD",   <- This one is increased
+  ...
+}
 ## Output end
 ```
