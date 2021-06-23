@@ -15,6 +15,7 @@ RUN \
       expect \
       git \
       graphviz \
+      libboost1.67-all-dev \
       libbz2-dev \
       libcurl4-openssl-dev \
       libncurses-dev \
@@ -48,20 +49,6 @@ WORKDIR /home/peerplays
 
 RUN \
     mkdir src
-
-# Download Boost
-RUN \
-    cd src && \
-    wget -c 'http://sourceforge.net/projects/boost/files/boost/1.67.0/boost_1_67_0.tar.gz/download' -O boost_1_67_0.tar.gz && \
-    tar -zxvf boost_1_67_0.tar.gz
-
-# Build Boost
-RUN \
-    cd src/boost_1_67_0/ && \
-    ./bootstrap.sh && \
-    ./b2 -j$(nproc) install && \
-    cd .. && \
-    rm -rf src/boost*
 
 # Clone Hive
 ADD hive.diff src
