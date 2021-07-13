@@ -77,7 +77,7 @@ cd hive-network
 
 ./init-network.sh
 
-./cli_wallet -s ws://127.0.0.1:28090 -r 127.0.0.1:28091
+./cli_wallet -s ws://127.0.0.1:28090
 
 # Unlock wallet with 'unlock password'
 ```
