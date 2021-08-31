@@ -1,0 +1,15 @@
+FROM peerplays-base:latest
+MAINTAINER PeerPlays Blockchain Standards Association
+
+WORKDIR /home/peerplays/peerplays-network
+
+ADD config12.ini ./witness_node_data_dir/config.ini
+
+# Peerplays RPC
+EXPOSE 8090
+# Peerplays P2P:
+EXPOSE 9777
+
+# Peerplays
+CMD ["./witness_node", "-d", "./witness_node_data_dir"]]
+

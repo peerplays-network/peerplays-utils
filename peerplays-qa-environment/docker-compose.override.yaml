@@ -1,0 +1,243 @@
+version: "3"
+networks:
+    peerplays-network:
+        driver: bridge
+        ipam:
+            config:
+                - subnet: 10.11.12.0/24
+services:
+    bitcoin-for-peerplays:
+        build:
+            context: bitcoin
+            dockerfile: Dockerfile
+        depends_on:
+            - ubuntu-for-peerplays
+        image: bitcoin-for-peerplays
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.201
+        ports:
+            - "8332:8332"
+            - "11111:11111"
+            - "18444:18444"
+    hive-for-peerplays:
+        build:
+            context: hive
+            dockerfile: Dockerfile
+        depends_on:
+            - ubuntu-for-peerplays
+        image: hive-for-peerplays
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.202
+        ports:
+            - "28090:28090"
+            - "28091:28091"
+    peerplays01:
+        build:
+            context: peerplays
+            dockerfile: Dockerfile01
+        depends_on:
+            - peerplays-base
+        image: peerplays01
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.101
+        ports:
+            - "8090:8090"
+            - "9777:9777"
+    peerplays02:
+        build:
+            context: peerplays
+            dockerfile: Dockerfile02
+        depends_on:
+            - peerplays-base
+        image: peerplays02
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.102
+        ports:
+            - "8091:8090"
+            - "9778:9777"
+    peerplays03:
+        build:
+            context: peerplays
+            dockerfile: Dockerfile03
+        depends_on:
+            - peerplays-base
+        image: peerplays03
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.103
+        ports:
+            - "8092:8090"
+            - "9779:9777"
+    peerplays04:
+        build:
+            context: peerplays
+            dockerfile: Dockerfile04
+        depends_on:
+            - peerplays-base
+        image: peerplays04
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.104
+        ports:
+            - "8093:8090"
+            - "9780:9777"
+    peerplays05:
+        build:
+            context: peerplays
+            dockerfile: Dockerfile05
+        depends_on:
+            - peerplays-base
+        image: peerplays05
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.105
+        ports:
+            - "8094:8090"
+            - "9781:9777"
+    peerplays06:
+        build:
+            context: peerplays
+            dockerfile: Dockerfile06
+        depends_on:
+            - peerplays-base
+        image: peerplays06
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.106
+        ports:
+            - "8095:8090"
+            - "9782:9777"
+    peerplays07:
+        build:
+            context: peerplays
+            dockerfile: Dockerfile07
+        depends_on:
+            - peerplays-base
+        image: peerplays07
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.107
+        ports:
+            - "8096:8090"
+            - "9783:9777"
+    peerplays08:
+        build:
+            context: peerplays
+            dockerfile: Dockerfile08
+        depends_on:
+            - peerplays-base
+        image: peerplays08
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.108
+        ports:
+            - "8097:8090"
+            - "9784:9777"
+    peerplays09:
+        build:
+            context: peerplays
+            dockerfile: Dockerfile09
+        depends_on:
+            - peerplays-base
+        image: peerplays09
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.109
+        ports:
+            - "8098:8090"
+            - "9785:9777"
+    peerplays10:
+        build:
+            context: peerplays
+            dockerfile: Dockerfile10
+        depends_on:
+            - peerplays-base
+        image: peerplays10
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.110
+        ports:
+            - "8099:8090"
+            - "9786:9777"
+    peerplays11:
+        build:
+            context: peerplays
+            dockerfile: Dockerfile11
+        depends_on:
+            - peerplays-base
+        image: peerplays11
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.111
+        ports:
+            - "8100:8090"
+            - "9787:9777"
+    peerplays12:
+        build:
+            context: peerplays
+            dockerfile: Dockerfile12
+        depends_on:
+            - peerplays-base
+        image: peerplays12
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.112
+        ports:
+            - "8101:8090"
+            - "9788:9777"
+    peerplays13:
+        build:
+            context: peerplays
+            dockerfile: Dockerfile13
+        depends_on:
+            - peerplays-base
+        image: peerplays13
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.113
+        ports:
+            - "8102:8090"
+            - "9789:9777"
+    peerplays14:
+        build:
+            context: peerplays
+            dockerfile: Dockerfile14
+        depends_on:
+            - peerplays-base
+        image: peerplays14
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.114
+        ports:
+            - "8103:8090"
+            - "9790:9777"
+    peerplays15:
+        build:
+            context: peerplays
+            dockerfile: Dockerfile15
+        depends_on:
+            - peerplays-base
+        image: peerplays15
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.115
+        ports:
+            - "8104:8090"
+            - "9791:9777"
+    peerplays16:
+        build:
+            context: peerplays
+            dockerfile: Dockerfile16
+        depends_on:
+            - peerplays-base
+        image: peerplays16
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.116
+        ports:
+            - "8105:8090"
+            - "9792:9777"
