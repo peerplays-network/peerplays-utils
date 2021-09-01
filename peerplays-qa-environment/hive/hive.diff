@@ -1,0 +1,142 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 7ee16abe..f734ae1d 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -246,7 +246,7 @@ else( WIN32 ) # Apple AND Linux
+     else( APPLE )
+         # Linux Specific Options Here
+         message( STATUS "Configuring Hive on Linux" )
+-        set( CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -std=c++11 -Wall" )
++        set( CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -std=c++11 -Wall -Wno-sign-compare" )
+         set( rt_library rt )
+         set( pthread_library pthread)
+         if ( NOT DEFINED crypto_library )
+diff --git a/libraries/plugins/account_history_rocksdb/account_history_rocksdb_plugin.cpp b/libraries/plugins/account_history_rocksdb/account_history_rocksdb_plugin.cpp
+index a3e9c858..b687700a 100644
+--- a/libraries/plugins/account_history_rocksdb/account_history_rocksdb_plugin.cpp
++++ b/libraries/plugins/account_history_rocksdb/account_history_rocksdb_plugin.cpp
+@@ -1149,7 +1149,7 @@ account_history_rocksdb_plugin::impl::collectReversibleOps(uint32_t* blockRangeB
+     *blockRangeEnd = retVal.back().block + 1;
+   }
+ 
+-  return std::move(retVal);
++  return retVal;
+ }
+ 
+ void account_history_rocksdb_plugin::impl::find_account_history_data(const account_name_type& name, uint64_t start,
+diff --git a/libraries/plugins/apis/database_api/database_api.cpp b/libraries/plugins/apis/database_api/database_api.cpp
+index c3bec8ac..ed71d1c9 100644
+--- a/libraries/plugins/apis/database_api/database_api.cpp
++++ b/libraries/plugins/apis/database_api/database_api.cpp
+@@ -1109,7 +1109,7 @@ DEFINE_API_IMPL(database_api_impl, get_comment_pending_payouts)
+     }
+   }
+ 
+-  return std::move(retval);
++  return retval;
+ }
+ 
+ /* Comments */
+diff --git a/libraries/plugins/state_snapshot/state_snapshot_plugin.cpp b/libraries/plugins/state_snapshot/state_snapshot_plugin.cpp
+index 2cbde7e0..91d427df 100644
+--- a/libraries/plugins/state_snapshot/state_snapshot_plugin.cpp
++++ b/libraries/plugins/state_snapshot/state_snapshot_plugin.cpp
+@@ -147,7 +147,7 @@ rocksdb_cleanup_helper rocksdb_cleanup_helper::open(const ::rocksdb::Options& op
+     throw std::exception();
+     }
+ 
+-  return std::move(retVal);
++  return retVal;
+   }
+ 
+ void rocksdb_cleanup_helper::close()
+@@ -650,7 +650,7 @@ index_dump_writer::prepare(const std::string& indexDescription, size_t firstId,
+       right += ITEMS_PER_WORKER;
+     }
+   
+-  return std::move(retVal);
++  return retVal;
+   }
+ 
+ void index_dump_writer::start(const workers& workers)
+@@ -855,7 +855,7 @@ index_dump_reader::prepare(const std::string& indexDescription, snapshot_convert
+   workers retVal;
+   retVal.emplace_back(_builtWorkers.front().get());
+ 
+-  return std::move(retVal);
++  return retVal;
+   }
+ 
+ void index_dump_reader::start(const workers& workers)
+diff --git a/libraries/vendor/rocksdb/CMakeLists.txt b/libraries/vendor/rocksdb/CMakeLists.txt
+index 4e89f89b..b61c4447 100644
+--- a/libraries/vendor/rocksdb/CMakeLists.txt
++++ b/libraries/vendor/rocksdb/CMakeLists.txt
+@@ -182,7 +182,7 @@ if(MSVC)
+   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /FC /d2Zi+ /W4 /wd4127 /wd4800 /wd4996 /wd4351 /wd4100 /wd4204 /wd4324")
+ else()
+   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -W -Wextra -Wall")
+-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wsign-compare -Wshadow -Wno-unused-parameter -Wno-unused-variable -Woverloaded-virtual -Wnon-virtual-dtor -Wno-missing-field-initializers -Wno-strict-aliasing")
++  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wsign-compare -Wshadow -Wno-unused-parameter -Wno-unused-variable -Woverloaded-virtual -Wnon-virtual-dtor -Wno-missing-field-initializers -Wno-strict-aliasing -Wno-sign-compare")
+   if(MINGW)
+     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-format")
+   endif()
+diff --git a/libraries/vendor/rocksdb/db/internal_stats.h b/libraries/vendor/rocksdb/db/internal_stats.h
+index 6fa8727a..2edb3356 100644
+--- a/libraries/vendor/rocksdb/db/internal_stats.h
++++ b/libraries/vendor/rocksdb/db/internal_stats.h
+@@ -236,6 +236,28 @@ class InternalStats {
+       }
+     }
+ 
++    CompactionStats& operator=(const CompactionStats& c) {
++      micros = c.micros;
++      cpu_micros = c.cpu_micros;
++      bytes_read_non_output_levels = c.bytes_read_non_output_levels;
++      bytes_read_output_level = c.bytes_read_output_level;
++      bytes_written = c.bytes_written;
++      bytes_moved = c.bytes_moved;
++      num_input_files_in_non_output_levels =
++          c.num_input_files_in_non_output_levels;
++      num_input_files_in_output_level = c.num_input_files_in_output_level;
++      num_output_files = c.num_output_files;
++      num_input_records = c.num_input_records;
++      num_dropped_records = c.num_dropped_records;
++      count = c.count;
++
++      int num_of_reasons = static_cast<int>(CompactionReason::kNumOfReasons);
++      for (int i = 0; i < num_of_reasons; i++) {
++        counts[i] = c.counts[i];
++      }
++      return *this;
++    }
++
+     void Clear() {
+       this->micros = 0;
+       this->cpu_micros = 0;
+diff --git a/libraries/vendor/rocksdb/db/version_edit.h b/libraries/vendor/rocksdb/db/version_edit.h
+index 22953179..eb4aba03 100644
+--- a/libraries/vendor/rocksdb/db/version_edit.h
++++ b/libraries/vendor/rocksdb/db/version_edit.h
+@@ -52,6 +52,8 @@ struct FileDescriptor {
+         smallest_seqno(_smallest_seqno),
+         largest_seqno(_largest_seqno) {}
+ 
++  FileDescriptor(const FileDescriptor& fd) { *this=fd; }
++
+   FileDescriptor& operator=(const FileDescriptor& fd) {
+     table_reader = fd.table_reader;
+     packed_number_and_path_id = fd.packed_number_and_path_id;
+diff --git a/libraries/vendor/rocksdb/utilities/persistent_cache/persistent_cache_util.h b/libraries/vendor/rocksdb/utilities/persistent_cache/persistent_cache_util.h
+index 214bb587..254c038f 100644
+--- a/libraries/vendor/rocksdb/utilities/persistent_cache/persistent_cache_util.h
++++ b/libraries/vendor/rocksdb/utilities/persistent_cache/persistent_cache_util.h
+@@ -48,7 +48,7 @@ class BoundedQueue {
+     T t = std::move(q_.front());
+     size_ -= t.Size();
+     q_.pop_front();
+-    return std::move(t);
++    return t;
+   }
+ 
+   size_t Size() const {
