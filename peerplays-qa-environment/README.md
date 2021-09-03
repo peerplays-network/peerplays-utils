@@ -1,21 +1,51 @@
-# SON QA environment
+# Peerplays QA environment
 
-This docker-compose image contains self contained, ready to go, SON QA environment
+This set of docker images contains self contained, ready to go, Peerplays QA environment. It features 22 witnesses, 16 Bitcoin SONs, 16 Hive SONs and faucet.
 
-## Build the docker images
-Building the images will take some time, as the software will be built from scratch.
+## Building docker images
+Building docker images will take some time, as the software will be built from scratch.
 ```
 docker-compose build
 ```
 
-## Start the containers
-Creates new instances and starts them
+## Start containers
+Creates new containers for all images and starts them.
 ```
 docker-compose up
 ```
+You can also start containers one by one, or in groups.
+### Bitcoin
+```
+docker-compose up bitcoin-for-peerplays
+```
+### Hive
+```
+docker-compose up hive-for-peerplays
+```
+### Peerplays
+Start any set of containers you need. peerplays01 must be started, as this is the node that starts block production. For full set of witnesses/SONs, you need to start nodes peerplays01-peerplays11.
+```
+docker-compose up peerplays01
+docker-compose up peerplays01 peerplays02
+docker-compose up peerplays05 peerplays10 peerplays15
 
-## Stop the containers
-Stops running instances and deletes them
+# Minimal full featured network, 22 witnesses (11 active), 11 SONs (7 active)
+docker-compose up peerplays01 peerplays02 peerplays03 peerplays04 peerplays05 peerplays06 peerplays07 peerplays08 peerplays09 peerplays10 peerplays11
+
+# Full network, 22 witnesses (11 active), 16 SONs (7 active)
+docker-compose up peerplays01 peerplays02 peerplays03 peerplays04 peerplays05 peerplays06 peerplays07 peerplays08 peerplays09 peerplays10 peerplays11 peerplays12 peerplays13 peerplays14 peerplays15 peerplays16
+```
+### Redis
+```
+docker-compose up docker-compose up redis-for-peerplays
+```
+### Faucet
+```
+docker-compose up faucet-for-peerplays
+```
+
+## Stop containers
+Stops running all active containers and deletes them
 ```
 docker-compose down
 ```
@@ -37,18 +67,16 @@ docker exec -it peerplays-qa-environment_peerplays02_1 /bin/bash
 docker exec -it peerplays-qa-environment_peerplays03_1 /bin/bash
 etc...
 ```
-
 ### Redis
 ```
 docker exec -it peerplays-qa-environment_redis-for-peerplays_1 /bin/bash
 ```
-
 ### Faucet
 ```
 docker exec -it peerplays-qa-environment_ubuntu-for-peerplays_1 /bin/bash
 ```
 
-## Initializing networks
+## Initializing network
 Wait for one initialization to finish, before starting the next one. Initialization should be done in the following order:
 - Bitcoin
 - Hive
@@ -58,11 +86,10 @@ Wait for one initialization to finish, before starting the next one. Initializat
 
 Once the Peerplays network initialization is finished, wait for maintenance block.
 
-Before starting initialization, make sure that all nodes are down.
+### Before starting initialization, make sure that all nodes are down.
 ```
 docker-compose down
 ```
-
 ### Bitcoin
 ```
 docker-compose up bitcoin-for-peerplays
@@ -121,6 +148,7 @@ Peerplays14    10.11.12.114    Witness NONE          ,    SON 1.33.13,  Stale pr
 Peerplays15    10.11.12.115    Witness NONE          ,    SON 1.33.14,  Stale production OFF
 Peerplays16    10.11.12.116    Witness NONE          ,    SON 1.33.15,  Stale production OFF
 ```
+
 ## Monitoring resource usage
 To monitor computer resource usage by docker containers in real time, use the following command:
 ```
