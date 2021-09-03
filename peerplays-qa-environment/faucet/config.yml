@@ -21,4 +21,7 @@ wif: "5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3"
 balance_mailthreshold: 500  # if balances goes below this, you will be notified
 core_asset: "TEST"
 
+enable_initial_balance: 1
+initial_balance: 10000
+
 redis_ip: "10.11.12.51"
