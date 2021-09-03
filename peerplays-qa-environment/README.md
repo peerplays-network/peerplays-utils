@@ -55,6 +55,7 @@ Wait for one initialization to finish, before starting the next one. Initializat
 - Peerplays
 - Redis
 - Faucet
+
 Once the Peerplays network initialization is finished, wait for maintenance block.
 
 Before starting initialization, make sure that all nodes are down.
