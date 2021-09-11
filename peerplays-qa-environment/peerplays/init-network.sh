@@ -26,6 +26,12 @@ expect "unlocked >>> "
 send "list_account_balances nathan\r"
 
 expect "unlocked >>> "
+send "reserve_asset nathan 5000000000 TEST true\r"
+
+expect "unlocked >>> "
+send "list_account_balances nathan\r"
+
+expect "unlocked >>> "
 send "upgrade_account nathan true\r"
 
 
