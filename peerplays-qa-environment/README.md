@@ -37,7 +37,7 @@ docker-compose up peerplays01 peerplays02 peerplays03 peerplays04 peerplays05 pe
 ```
 ### Redis
 ```
-docker-compose up docker-compose up redis-for-peerplays
+docker-compose up redis-for-peerplays
 ```
 ### Faucet
 ```
@@ -73,7 +73,7 @@ docker exec -it peerplays-qa-environment_redis-for-peerplays_1 /bin/bash
 ```
 ### Faucet
 ```
-docker exec -it peerplays-qa-environment_ubuntu-for-peerplays_1 /bin/bash
+docker exec -it peerplays-qa-environment_faucet-for-peerplays_1 /bin/bash
 ```
 
 ## Initializing network
@@ -114,7 +114,7 @@ docker exec -it peerplays-qa-environment_peerplays01_1 /bin/bash
 ```
 ### Redis
 ```
-docker-compose up docker-compose up redis-for-peerplays
+docker-compose up redis-for-peerplays
 # Wait for message "Ready to accept connections"
 ```
 ### Faucet
