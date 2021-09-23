@@ -794,37 +794,37 @@ send "update_account_auth_account son-account active sonaccount06 1 true\r"
 expect "unlocked >>> "
 send "update_account_auth_account son-account active sonaccount07 1 true\r"
 
-expect "unlocked >>> "
-send "update_account_auth_account son-account active sonaccount08 1 true\r"
+#expect "unlocked >>> "
+#send "update_account_auth_account son-account active sonaccount08 1 true\r"
+
+#expect "unlocked >>> "
+#send "update_account_auth_account son-account active sonaccount09 1 true\r"
+
+#expect "unlocked >>> "
+#send "update_account_auth_account son-account active sonaccount10 1 true\r"
+
+#expect "unlocked >>> "
+#send "update_account_auth_account son-account active sonaccount11 1 true\r"
+
+#expect "unlocked >>> "
+#send "update_account_auth_account son-account active sonaccount12 1 true\r"
+
+#expect "unlocked >>> "
+#send "update_account_auth_account son-account active sonaccount13 1 true\r"
+
+#expect "unlocked >>> "
+#send "update_account_auth_account son-account active sonaccount14 1 true\r"
+
+#expect "unlocked >>> "
+#send "update_account_auth_account son-account active sonaccount15 1 true\r"
+
+
 
 expect "unlocked >>> "
-send "update_account_auth_account son-account active sonaccount09 1 true\r"
+send "update_account_auth_key son-account active TST6wibhLBtEz6tmYhWu3aQh9PMCfqbdqozs7fbSc7ESottim7QB4 99 true\r"
 
 expect "unlocked >>> "
-send "update_account_auth_account son-account active sonaccount10 1 true\r"
-
-expect "unlocked >>> "
-send "update_account_auth_account son-account active sonaccount11 1 true\r"
-
-expect "unlocked >>> "
-send "update_account_auth_account son-account active sonaccount12 1 true\r"
-
-expect "unlocked >>> "
-send "update_account_auth_account son-account active sonaccount13 1 true\r"
-
-expect "unlocked >>> "
-send "update_account_auth_account son-account active sonaccount14 1 true\r"
-
-expect "unlocked >>> "
-send "update_account_auth_account son-account active sonaccount15 1 true\r"
-
-
-
-expect "unlocked >>> "
-send "update_account_auth_key son-account active TST6wibhLBtEz6tmYhWu3aQh9PMCfqbdqozs7fbSc7ESottim7QB4 11 true\r"
-
-expect "unlocked >>> "
-send "update_account_auth_threshold son-account active 11 true\r"
+send "update_account_auth_threshold son-account active 5 true\r"
 
 #expect "unlocked >>> "
 #send "update_account_auth_key son-account active TST6wibhLBtEz6tmYhWu3aQh9PMCfqbdqozs7fbSc7ESottim7QB4 0 true\r"
