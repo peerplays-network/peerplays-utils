@@ -35,6 +35,26 @@ services:
             - "28090:28090"
             - "28091:28091"
         restart: always
+# ------------------------------------------------------------
+    faucet-for-peerplays:
+        build:
+            context: faucet
+            dockerfile: Dockerfile
+        depends_on:
+            - ubuntu-for-peerplays
+        image: faucet-for-peerplays
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.50
+        ports:
+            - "5000:5000"
+# ------------------------------------------------------------
+    redis-for-peerplays:
+        image: redis:latest
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.51
+# ------------------------------------------------------------
     peerplays01:
         build:
             context: peerplays

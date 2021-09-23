@@ -1,0 +1,27 @@
+secret_key: "a90afddb40ebf8b607311ffff5784d76c6f1a2ba0c35095719837e7f3ea1de02"  # Random keys
+nobroadcast: false            # Safety mode
+
+mail_host: "SERVER:589"
+mail_user: "user"
+mail_pass: "password"
+mail_from: "noreply@faucet.org"
+
+admins:
+ - adminA@example.com
+ - adminB@example.com
+
+minIPAge: 300  # How long in secs does an IP need to wait to register a new account?
+witness_url: "ws://10.11.12.101:8090"
+
+registrar: "nathan"
+default_referrer: "nathan"
+referrer_percent: 0  # in percent
+wif: "5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3"
+
+balance_mailthreshold: 500  # if balances goes below this, you will be notified
+core_asset: "TEST"
+
+enable_initial_balance: 1
+initial_balance: 10000
+
+redis_ip: "10.11.12.51"

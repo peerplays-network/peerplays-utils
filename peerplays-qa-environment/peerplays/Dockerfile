@@ -55,4 +55,4 @@ EXPOSE 8090
 EXPOSE 9777
 
 # Peerplays
-#CMD ["./witness_node", "-d", "./witness_node_data_dir", "--replay-blockchain"]
+#CMD ["./witness_node", "-d", "./witness_node_data_dir"]
