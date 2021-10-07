@@ -4,7 +4,8 @@ This set of docker images contains self contained, ready to go, Peerplays QA env
 
 It features:
 - Generic Ubuntu image used for building QA environment
-- 16 Peerplays nodes, running 27 witnesses (11 initial + 16 additional), 16 BTC SONs and 16 Hive SONs
+- Peerplays Private Testnet Multi Node network - 16 Peerplays nodes, running 27 witnesses (11 initial + 16 additional), 16 BTC SONs and 16 Hive SONs
+- Peerplays Private Testnet All In One network - Single Peerplays node, running 27 witnesses (11 initial + 16 additional), 16 BTC SONs and 16 Hive SONs
 - BTC regtest node
 - Hive private testnet node, running in stale production mode
 - Redis node
@@ -18,7 +19,7 @@ It features:
 - 16 funded Hive private testnet user accounts
 - 1 unfunded Hive private testnet multisig SON account owned by 7 SON operator accounts
 - Peerplays private testnet nathan account, ready to be used
-- 27 funded Peerplays private testnet witness accounts
+- 27 funded Peerplays private testnet witness operator accounts
 - 16 funded Peerplays private testnet SON operator accounts
 - 16 funded Peerplays private testnet user accounts
 - 1 funded Peerplays private testnet multisig SON account owned by 7 SON operator accounts
@@ -33,21 +34,23 @@ Building docker images will take some time, as the software will be built from s
 docker-compose build
 ```
 
-## Start containers
-Creates new containers for all images and starts them.
+## Starting containers
+Do not use this!!! Some components are mutually exclusive, and can not run side by side.
 ```
 docker-compose up
 ```
-You can also start containers one by one, or in groups.
+Instead, start containers one by one or in groups
 ### Bitcoin
 ```
 docker-compose up bitcoin-for-peerplays
 ```
-### Hive
+### Hive Private Testnet
 ```
 docker-compose up hive-for-peerplays
 ```
-### Peerplays
+### Peerplays Private Testnet Multi Node
+This component is mutually exclusive with Peerplays All In One.
+
 Start any set of containers you need. peerplays01 must be started, as this is the node that starts block production. For full set of witnesses/SONs, you need to start nodes peerplays01-peerplays11.
 ```
 docker-compose up peerplays01
@@ -59,6 +62,13 @@ docker-compose up peerplays01 peerplays02 peerplays03 peerplays04 peerplays05 pe
 
 # Full network, 22 witnesses (11 active), 16 SONs (7 active)
 docker-compose up peerplays01 peerplays02 peerplays03 peerplays04 peerplays05 peerplays06 peerplays07 peerplays08 peerplays09 peerplays10 peerplays11 peerplays12 peerplays13 peerplays14 peerplays15 peerplays16
+```
+### Peerplays Private Testnet All In One
+This component is mutually exclusive with Peerplays Multi Node.
+
+This will run all witnesses and SONs in a single container. Use it as a lightweight solution.
+```
+docker-compose up peerplays-all-in-one
 ```
 ### Redis
 ```
@@ -81,16 +91,20 @@ First part of the container name might be different (peerplays-qa-environment)
 ```
 docker exec -it peerplays-qa-environment_bitcoin-for-peerplays_1 /bin/bash
 ```
-### Hive
+### Hive Private Testnet
 ```
 docker exec -it peerplays-qa-environment_hive-for-peerplays_1 /bin/bash
 ```
-### Peerplays
+### Peerplays Private Testnet
 ```
+# For Multi Node
 docker exec -it peerplays-qa-environment_peerplays01_1 /bin/bash
 docker exec -it peerplays-qa-environment_peerplays02_1 /bin/bash
 docker exec -it peerplays-qa-environment_peerplays03_1 /bin/bash
 etc...
+
+# For All In One
+docker exec -it peerplays-qa-environment_peerplays-all-in-one_1 /bin/bash
 ```
 ### Redis
 ```
@@ -104,8 +118,8 @@ docker exec -it peerplays-qa-environment_faucet-for-peerplays_1 /bin/bash
 ## Initializing network
 Wait for one initialization to finish, before starting the next one. Initialization should be done in the following order:
 - Bitcoin
-- Hive
-- Peerplays
+- Hive Private Testnet
+- Peerplays Private Testnet
 - Redis
 - Faucet
 
@@ -121,7 +135,7 @@ docker-compose up bitcoin-for-peerplays
 docker exec -it peerplays-qa-environment_bitcoin-for-peerplays_1 /bin/bash
 ./init-network.sh
 ```
-### Hive
+### Hive Private Testnet
 ```
 docker-compose up hive-for-peerplays
 # Wait for "Generated block..." messages
@@ -130,10 +144,19 @@ docker exec -it peerplays-qa-environment_hive-for-peerplays_1 /bin/bash
 ```
 ### Peerplays
 ```
+# For Multi Node
 docker-compose up peerplays01 peerplays02 peerplays03 peerplays04 peerplays05 peerplays06 peerplays07 peerplays08 peerplays09 peerplays10 peerplays11 peerplays12 peerplays13 peerplays14 peerplays15 peerplays16
 # Wait for "Generated block..." messages
 # Wait for nodes to sync (no "Not producing block..." messages)
 docker exec -it peerplays-qa-environment_peerplays01_1 /bin/bash
+./init-network.sh
+# Wait for maintenance block
+
+# For All In One
+docker-compose up peerplays-all-in-one
+# Wait for "Generated block..." messages
+# Wait for nodes to sync (no "Not producing block..." messages)
+docker exec -it peerplays-qa-environment_peerplays-all-in-one_1 /bin/bash
 ./init-network.sh
 # Wait for maintenance block
 ```
@@ -146,6 +169,9 @@ docker-compose up redis-for-peerplays
 ```
 docker-compose up faucet-for-peerplays
 # Wait for message "Running on http://10.11.12.50:5000/ (Press CTRL+C to quit)"
+
+# Create new account through faucet (10000 TESTS will be credited to the account)
+curl -X POST http://10.11.12.50:5000/api/v1/accounts -H "Content-Type: application/json" -d '{ "account":{ "name":"new-account", "owner_key":"TEST6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV", "active_key":"TEST6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV", "memo_key":"TEST6MRyAjQq8ud7hVNYcfnVPJqcVpscN5So8BhtHuGYqET5GDW5CV" } }'
 ```
 
 ## Node properties
@@ -167,11 +193,11 @@ Peerplays08    10.11.12.108    Witness 1.6.8,  1.6.19.    SON 1.33.7,   Stale pr
 Peerplays09    10.11.12.109    Witness 1.6.9,  1.6.20,    SON 1.33.8,   Stale production OFF
 Peerplays10    10.11.12.110    Witness 1.6.10, 1.6.21,    SON 1.33.9,   Stale production OFF
 Peerplays11    10.11.12.111    Witness 1.6.11, 1.6.22,    SON 1.33.10,  Stale production OFF
-Peerplays13    10.11.12.112    Witness NONE          ,    SON 1.33.11,  Stale production OFF
-Peerplays13    10.11.12.113    Witness NONE          ,    SON 1.33.12,  Stale production OFF
-Peerplays14    10.11.12.114    Witness NONE          ,    SON 1.33.13,  Stale production OFF
-Peerplays15    10.11.12.115    Witness NONE          ,    SON 1.33.14,  Stale production OFF
-Peerplays16    10.11.12.116    Witness NONE          ,    SON 1.33.15,  Stale production OFF
+Peerplays13    10.11.12.112    Witness         1.6.23,    SON 1.33.11,  Stale production OFF
+Peerplays13    10.11.12.113    Witness         1.6.24,    SON 1.33.12,  Stale production OFF
+Peerplays14    10.11.12.114    Witness         1.6.25,    SON 1.33.13,  Stale production OFF
+Peerplays15    10.11.12.115    Witness         1.6.26,    SON 1.33.14,  Stale production OFF
+Peerplays16    10.11.12.116    Witness         1.6.27,    SON 1.33.15,  Stale production OFF
 ```
 
 ## Monitoring resource usage

@@ -50,4 +50,4 @@ RUN echo 'peerplays:peerplays' | chpasswd
 EXPOSE 22
 
 # SSH server
-CMD ["/usr/sbin/sshd","-D"]
+#CMD ["/usr/sbin/sshd","-D"]

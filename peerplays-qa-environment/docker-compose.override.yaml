@@ -6,6 +6,8 @@ networks:
             config:
                 - subnet: 10.11.12.0/24
 services:
+# ------------------------------------------------------------
+# ------------------------------------------------------------
     bitcoin-for-peerplays:
         build:
             context: bitcoin
@@ -21,6 +23,7 @@ services:
             - "11111:11111"
             - "18444:18444"
         restart: always
+# ------------------------------------------------------------
     hive-for-peerplays:
         build:
             context: hive
@@ -36,6 +39,7 @@ services:
             - "28091:28091"
         restart: always
 # ------------------------------------------------------------
+# ------------------------------------------------------------
     faucet-for-peerplays:
         build:
             context: faucet
@@ -48,12 +52,30 @@ services:
                 ipv4_address: 10.11.12.50
         ports:
             - "5000:5000"
+        restart: always
 # ------------------------------------------------------------
     redis-for-peerplays:
         image: redis:latest
         networks:
             peerplays-network:
                 ipv4_address: 10.11.12.51
+        restart: always
+# ------------------------------------------------------------
+# ------------------------------------------------------------
+    peerplays-all-in-one:
+        build:
+            context: peerplays
+            dockerfile: Dockerfile00
+        depends_on:
+            - peerplays-base
+        image: peerplays-all-in-one
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.101
+        ports:
+            - "8090:8090"
+            - "9777:9777"
+        restart: always
 # ------------------------------------------------------------
     peerplays01:
         build:
@@ -69,6 +91,7 @@ services:
             - "8090:8090"
             - "9777:9777"
         restart: always
+# ------------------------------------------------------------
     peerplays02:
         build:
             context: peerplays
@@ -83,6 +106,7 @@ services:
             - "8091:8090"
             - "9778:9777"
         restart: always
+# ------------------------------------------------------------
     peerplays03:
         build:
             context: peerplays
@@ -97,6 +121,7 @@ services:
             - "8092:8090"
             - "9779:9777"
         restart: always
+# ------------------------------------------------------------
     peerplays04:
         build:
             context: peerplays
@@ -111,6 +136,7 @@ services:
             - "8093:8090"
             - "9780:9777"
         restart: always
+# ------------------------------------------------------------
     peerplays05:
         build:
             context: peerplays
@@ -125,6 +151,7 @@ services:
             - "8094:8090"
             - "9781:9777"
         restart: always
+# ------------------------------------------------------------
     peerplays06:
         build:
             context: peerplays
@@ -139,6 +166,7 @@ services:
             - "8095:8090"
             - "9782:9777"
         restart: always
+# ------------------------------------------------------------
     peerplays07:
         build:
             context: peerplays
@@ -153,6 +181,7 @@ services:
             - "8096:8090"
             - "9783:9777"
         restart: always
+# ------------------------------------------------------------
     peerplays08:
         build:
             context: peerplays
@@ -167,6 +196,7 @@ services:
             - "8097:8090"
             - "9784:9777"
         restart: always
+# ------------------------------------------------------------
     peerplays09:
         build:
             context: peerplays
@@ -181,6 +211,7 @@ services:
             - "8098:8090"
             - "9785:9777"
         restart: always
+# ------------------------------------------------------------
     peerplays10:
         build:
             context: peerplays
@@ -195,6 +226,7 @@ services:
             - "8099:8090"
             - "9786:9777"
         restart: always
+# ------------------------------------------------------------
     peerplays11:
         build:
             context: peerplays
@@ -209,6 +241,7 @@ services:
             - "8100:8090"
             - "9787:9777"
         restart: always
+# ------------------------------------------------------------
     peerplays12:
         build:
             context: peerplays
@@ -223,6 +256,7 @@ services:
             - "8101:8090"
             - "9788:9777"
         restart: always
+# ------------------------------------------------------------
     peerplays13:
         build:
             context: peerplays
@@ -237,6 +271,7 @@ services:
             - "8102:8090"
             - "9789:9777"
         restart: always
+# ------------------------------------------------------------
     peerplays14:
         build:
             context: peerplays
@@ -251,6 +286,7 @@ services:
             - "8103:8090"
             - "9790:9777"
         restart: always
+# ------------------------------------------------------------
     peerplays15:
         build:
             context: peerplays
@@ -265,6 +301,7 @@ services:
             - "8104:8090"
             - "9791:9777"
         restart: always
+# ------------------------------------------------------------
     peerplays16:
         build:
             context: peerplays
@@ -279,3 +316,5 @@ services:
             - "8105:8090"
             - "9792:9777"
         restart: always
+# ------------------------------------------------------------
+# ------------------------------------------------------------
