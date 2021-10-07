@@ -1,6 +1,31 @@
 # Peerplays QA environment
 
-This set of docker images contains self contained, ready to go, Peerplays QA environment. It features 22 witnesses, 16 Bitcoin SONs, 16 Hive SONs and faucet.
+This set of docker images contains self contained, ready to go, Peerplays QA environment.
+
+It features:
+- Generic Ubuntu image used for building QA environment
+- 16 Peerplays nodes, running 27 witnesses (11 initial + 16 additional), 16 BTC SONs and 16 Hive SONs
+- BTC regtest node
+- Hive private testnet node, running in stale production mode
+- Redis node
+- Faucet node
+- Private Docker network used for connecting all containers
+- 16 unfunded BTC private testnet SON operator accounts
+- 16 funded BTC private testnet user accounts stored in default wallet
+- 1 encrypted BTC wallet for SON operators
+- Hive private testnet inintminer account, ready to be used
+- 16 funded Hive private testnet SON operator accounts
+- 16 funded Hive private testnet user accounts
+- 1 unfunded Hive private testnet multisig SON account owned by 7 SON operator accounts
+- Peerplays private testnet nathan account, ready to be used
+- 27 funded Peerplays private testnet witness accounts
+- 16 funded Peerplays private testnet SON operator accounts
+- 16 funded Peerplays private testnet user accounts
+- 1 funded Peerplays private testnet multisig SON account owned by 7 SON operator accounts
+- Funded committee-account and witness-account on Peerplays network
+- 3 Peerplays private testnet UIA (user issued assets), distributed to user accounts
+- 48 sidechain address mappings, 96 addresses in total, belonging to user accounts on BTC, Hive and Peerplays networks
+- Decreased maintenance_interval and committee_proposal_review_period, to 10 minutes
 
 ## Building docker images
 Building docker images will take some time, as the software will be built from scratch.
