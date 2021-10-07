@@ -14,7 +14,7 @@ RUN \
     cd hive && \
     git checkout v1.24.8 && \
     git apply ../hive.diff && \
-    git submodule update --init --recursive
+    GIT_SSL_NO_VERIFY=true git submodule update --init --recursive
 
 # Configure Hive
 RUN \
