@@ -6,7 +6,7 @@ system "touch ./after; /bin/rm ./after*"
 system "touch ./before; /bin/rm ./before*"
 system "touch ./wallet.json; /bin/rm ./wallet.json"
 
-spawn ./cli_wallet --chain-id=a90afddb40ebf8b607311ffff5784d76c6f1a2ba0c35095719837e7f3ea1de02
+spawn ./cli_wallet --chain-id=7c1c72eb738b3ff1870350f85daca27e2d0f5dd25af27df7475fbd92815e421e
 
 
 

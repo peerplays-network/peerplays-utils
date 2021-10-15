@@ -1,5 +1,5 @@
 {
-  "initial_timestamp": "2021-03-03T03:03:03",
+  "initial_timestamp": "2021-09-09T09:09:09",
   "max_core_supply": "1000000000000000",
   "initial_parameters": {
     "current_fees": {
@@ -572,7 +572,9 @@
       "son_bitcoin_min_tx_confirmations": 1,
       "son_account": "1.2.3",
       "btc_asset": "1.3.0",
-      "maximum_son_count": 15
+      "maximum_son_count": 7,
+      "hbd_asset": "1.3.0",
+      "hive_asset": "1.3.0"
     }
   },
   "initial_bts_accounts": [],
