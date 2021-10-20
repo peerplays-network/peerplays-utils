@@ -36,7 +36,7 @@ RUN \
 ADD config.yml ./config.yml
 ADD start.sh ./start.sh
 
-RUN sed -i 's/^}/    "QAENV": {\n        "chain_id": "a90afddb40ebf8b607311ffff5784d76c6f1a2ba0c35095719837e7f3ea1de02",\n        "core_symbol": "TEST",\n        "prefix": "TEST",\n    },\n}/' env/lib/python3.8/site-packages/peerplaysbase/chains.py
+RUN sed -i 's/^}/    "QAENV": {\n        "chain_id": "7c1c72eb738b3ff1870350f85daca27e2d0f5dd25af27df7475fbd92815e421e",\n        "core_symbol": "TEST",\n        "prefix": "TEST",\n    },\n}/' env/lib/python3.8/site-packages/peerplaysbase/chains.py
 
 RUN sed -i 's/redis = Redis(.*/redis = Redis(host=config["redis_ip"])/'  app/views.py
 
