@@ -14,7 +14,9 @@ RUN \
 WORKDIR /home/peerplays/faucet
 
 RUN \
-    git clone https://gitlab.com/PBSA/tools-libs/faucet.git .
+    git clone https://gitlab.com/PBSA/tools-libs/faucet.git . && \
+    git branch --show-current && \
+    git log --oneline -n 5
 
 RUN sed -i 's/flask.*/flask==1.1.2/' requirements.txt
 RUN sed -i 's/pycryptodome.*/pycryptodome==3.8.1/' requirements.txt

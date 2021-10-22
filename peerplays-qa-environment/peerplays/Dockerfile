@@ -12,14 +12,16 @@ RUN \
     git clone https://gitlab.com/PBSA/peerplays.git && \
     cd peerplays && \
     git checkout feature/son-for-hive && \
-    git submodule update --init --recursive
+    git submodule update --init --recursive && \
+    git branch --show-current && \
+    git log --oneline -n 5
 
 # Configure Peerplays
 RUN \
     cd src/peerplays && \
     mkdir build && \
     cd build && \
-    cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_DEV_FEATURES=1 ..
+    cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_MULTIPLE_SONS=1 ..
 
 # Build Peerplays
 RUN \
@@ -31,8 +33,10 @@ ADD "https://www.random.org/cgi-bin/randbyte?nbytes=128&format=h" random
 RUN \
     cd src/peerplays && \
     git pull && \
+    git branch --show-current && \
+    git log --oneline -n 5 && \
     cd build && \
-    cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_DEV_FEATURES=1 ..
+    cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_MULTIPLE_SONS=1 ..
 
 # Build Peerplays
 RUN \
