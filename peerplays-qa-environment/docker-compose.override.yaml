@@ -27,7 +27,7 @@ services:
     hive-for-peerplays:
         build:
             context: hive
-            dockerfile: Dockerfile
+            dockerfile: Dockerfile.v1.25.0
         depends_on:
             - ubuntu-for-peerplays
         image: hive-for-peerplays

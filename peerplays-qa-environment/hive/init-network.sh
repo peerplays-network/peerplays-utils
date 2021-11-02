@@ -458,105 +458,105 @@ sleep 5
 
 
 expect "unlocked >>> "
-send "transfer initminer son-account \"1000000.000 TBD\" null true\r"
+send "transfer initminer son-account \"200000.000 TBD\" null true\r"
 
 
 expect "unlocked >>> "
-send "transfer initminer sonaccount01 \"1000000.000 TBD\" null true\r"
+send "transfer initminer sonaccount01 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer sonaccount02 \"1000000.000 TBD\" null true\r"
+send "transfer initminer sonaccount02 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer sonaccount03 \"1000000.000 TBD\" null true\r"
+send "transfer initminer sonaccount03 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer sonaccount04 \"1000000.000 TBD\" null true\r"
+send "transfer initminer sonaccount04 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer sonaccount05 \"1000000.000 TBD\" null true\r"
+send "transfer initminer sonaccount05 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer sonaccount06 \"1000000.000 TBD\" null true\r"
+send "transfer initminer sonaccount06 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer sonaccount07 \"1000000.000 TBD\" null true\r"
+send "transfer initminer sonaccount07 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer sonaccount08 \"1000000.000 TBD\" null true\r"
+send "transfer initminer sonaccount08 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer sonaccount09 \"1000000.000 TBD\" null true\r"
+send "transfer initminer sonaccount09 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer sonaccount10 \"1000000.000 TBD\" null true\r"
+send "transfer initminer sonaccount10 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer sonaccount11 \"1000000.000 TBD\" null true\r"
+send "transfer initminer sonaccount11 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer sonaccount12 \"1000000.000 TBD\" null true\r"
+send "transfer initminer sonaccount12 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer sonaccount13 \"1000000.000 TBD\" null true\r"
+send "transfer initminer sonaccount13 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer sonaccount14 \"1000000.000 TBD\" null true\r"
+send "transfer initminer sonaccount14 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer sonaccount15 \"1000000.000 TBD\" null true\r"
+send "transfer initminer sonaccount15 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer sonaccount16 \"1000000.000 TBD\" null true\r"
+send "transfer initminer sonaccount16 \"200000.000 TBD\" null true\r"
 
 
 expect "unlocked >>> "
-send "transfer initminer account01 \"1000000.000 TBD\" null true\r"
+send "transfer initminer account01 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer account02 \"1000000.000 TBD\" null true\r"
+send "transfer initminer account02 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer account03 \"1000000.000 TBD\" null true\r"
+send "transfer initminer account03 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer account04 \"1000000.000 TBD\" null true\r"
+send "transfer initminer account04 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer account05 \"1000000.000 TBD\" null true\r"
+send "transfer initminer account05 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer account06 \"1000000.000 TBD\" null true\r"
+send "transfer initminer account06 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer account07 \"1000000.000 TBD\" null true\r"
+send "transfer initminer account07 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer account08 \"1000000.000 TBD\" null true\r"
+send "transfer initminer account08 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer account09 \"1000000.000 TBD\" null true\r"
+send "transfer initminer account09 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer account10 \"1000000.000 TBD\" null true\r"
+send "transfer initminer account10 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer account11 \"1000000.000 TBD\" null true\r"
+send "transfer initminer account11 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer account12 \"1000000.000 TBD\" null true\r"
+send "transfer initminer account12 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer account13 \"1000000.000 TBD\" null true\r"
+send "transfer initminer account13 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer account14 \"1000000.000 TBD\" null true\r"
+send "transfer initminer account14 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer account15 \"1000000.000 TBD\" null true\r"
+send "transfer initminer account15 \"200000.000 TBD\" null true\r"
 
 expect "unlocked >>> "
-send "transfer initminer account16 \"1000000.000 TBD\" null true\r"
+send "transfer initminer account16 \"200000.000 TBD\" null true\r"
 
 
 
