@@ -26,8 +26,8 @@ docker-build:
         tag=":$CI_COMMIT_REF_SLUG"
         echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
       fi
-    - docker build -f peerplays-qa-environment/ubuntu/Dockerfile -t "$IMAGE${tag}" .
-    - docker push "$IMAGE${tag}"
+    - docker build -f peerplays-qa-environment/ubuntu/Dockerfile -t "ubuntu-for-peerplays:${tag}" .
+    - docker push "ubuntu-for-peerplays:${tag}"
   # Run this job in a branch where a Dockerfile exists
   only:
     - branches
