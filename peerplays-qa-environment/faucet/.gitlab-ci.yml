@@ -1,9 +1,9 @@
-# include:
-#     - template: Container-Scanning.gitlab-ci.yml
+include:
+    - template: Container-Scanning.gitlab-ci.yml
 
 stages:
     - build
-    # - test TODO 
+    - test  
 
 docker-build:
   image: ubuntu-for-peerplays:latest

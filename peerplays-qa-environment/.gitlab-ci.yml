@@ -9,13 +9,13 @@ bitcoin-trigger:
   #   - changes:
   #       - bitcoin/*
 
-faucet-trigger:
-  stage: triggers
-  trigger:
-    include: peerplays-qa-environment/faucet/.gitlab-ci.yml
-  # rules:
-  #   - changes:
-  #       - faucet/*
+# faucet-trigger:
+#   stage: triggers
+#   trigger:
+#     include: peerplays-qa-environment/faucet/.gitlab-ci.yml
+#   # rules:
+#   #   - changes:
+#   #       - faucet/*
     
 # hive:
 #   stage: triggers
