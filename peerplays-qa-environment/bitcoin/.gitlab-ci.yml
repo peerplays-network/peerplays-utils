@@ -1,8 +1,6 @@
 includes:
     - template: Container-Scanning.gitlab-ci.yml
-
-variables:
-    - IMAGE: "$CI_REGISTRY_IMAGE/bitcoin/${tag}"
+    
 stages:
     - build
     # - test TODO 
@@ -26,8 +24,8 @@ docker-build:
         tag=":$CI_COMMIT_REF_SLUG"
         echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
       fi
-    - docker build --pull -t $IMAGE .
-    - docker push $IMAGE
+    - docker build --pull -t "$CI_REGISTRY_IMAGE/bitcoin/${tag}" .
+    - docker push "$CI_REGISTRY_IMAGE/bitcoin/${tag}"
   # Run this job in a branch where a Dockerfile exists
   rules:
     - if: $CI_COMMIT_BRANCH

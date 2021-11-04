@@ -1,7 +1,7 @@
 stages:
   - triggers
 
-bitcoin:
+bitcoin-trigger:
   stage: triggers
   trigger:
     include: bitcoin/.gitlab-ci.yml
@@ -9,7 +9,7 @@ bitcoin:
   #   - changes:
   #       - bitcoin/*
 
-faucet:
+faucet-trigger:
   stage: triggers
   trigger:
     include: faucet/.gitlab-ci.yml

@@ -1,7 +1,7 @@
 stages:
   - triggers
 
-peerplays-qa:
+peerplays-qa-trigger:
   stage: triggers
   trigger:
     include: peerplays-qa-environment/.gitlab-ci.yml
