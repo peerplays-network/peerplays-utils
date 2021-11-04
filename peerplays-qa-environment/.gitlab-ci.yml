@@ -1,13 +1,13 @@
 stages:
   - triggers
 
-bitcoin-trigger:
-  stage: triggers
-  trigger:
-    include: peerplays-qa-environment/bitcoin/.gitlab-ci.yml
-  # rules:
-  #   - changes:
-  #       - bitcoin/*
+# bitcoin-trigger:
+#   stage: triggers
+#   trigger:
+#     include: peerplays-qa-environment/bitcoin/.gitlab-ci.yml
+#   # rules:
+#   #   - changes:
+#   #       - bitcoin/*
 
 # faucet-trigger:
 #   stage: triggers
@@ -34,10 +34,10 @@ bitcoin-trigger:
 #         - peerplays/*
 
 
-# ubuntu:
-#   stage: triggers
-#   trigger:
-#     include: ubuntu/.gitlab-ci.yml
-#   rules:
-#     - changes:
-#         - ubuntu/*
+ubuntu:
+  stage: triggers
+  trigger:
+    include: peerplays-qa-environment/ubuntu/.gitlab-ci.yml
+  # rules:
+  #   - changes:
+  #       - ubuntu/*
