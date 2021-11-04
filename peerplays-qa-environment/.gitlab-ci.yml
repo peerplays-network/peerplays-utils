@@ -6,6 +6,7 @@ bitcoin-trigger:
   needs: [ubuntu-trigger]
   trigger:
     include: peerplays-qa-environment/bitcoin/.gitlab-ci.yml
+  strategy: depend
   # rules:
   #   - changes:
   #       - bitcoin/*
@@ -15,6 +16,7 @@ faucet-trigger:
   needs: [ubuntu-trigger]
   trigger:
     include: peerplays-qa-environment/faucet/.gitlab-ci.yml
+  strategy: depend
   # rules:
   #   - changes:
   #       - faucet/*
@@ -40,6 +42,7 @@ ubuntu-trigger:
   stage: triggers
   trigger:
     include: peerplays-qa-environment/ubuntu/.gitlab-ci.yml
+  strategy: depend
   # rules:
   #   - changes:
   #       - ubuntu/*
