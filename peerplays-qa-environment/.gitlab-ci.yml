@@ -34,7 +34,7 @@ stages:
 #         - peerplays/*
 
 
-ubuntu:
+ubuntu-trigger:
   stage: triggers
   trigger:
     include: peerplays-qa-environment/ubuntu/.gitlab-ci.yml

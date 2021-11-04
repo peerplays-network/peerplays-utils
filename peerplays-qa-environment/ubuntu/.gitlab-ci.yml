@@ -1,7 +1,7 @@
 include:
     - template: Container-Scanning.gitlab-ci.yml
 
-variable:
+variables:
     - IMAGE: ubuntu-for-peerplays
 stages:
     - build
