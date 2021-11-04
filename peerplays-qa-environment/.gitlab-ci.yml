@@ -3,7 +3,7 @@ stages:
 
 bitcoin-trigger:
   stage: triggers
-  needs: ubuntu-trigger
+  needs: [ubuntu-trigger]
   trigger:
     include: peerplays-qa-environment/bitcoin/.gitlab-ci.yml
   # rules:
@@ -12,7 +12,7 @@ bitcoin-trigger:
 
 faucet-trigger:
   stage: triggers
-  needs: ubuntu-trigger
+  needs: [ubuntu-trigger]
   trigger:
     include: peerplays-qa-environment/faucet/.gitlab-ci.yml
   # rules:
