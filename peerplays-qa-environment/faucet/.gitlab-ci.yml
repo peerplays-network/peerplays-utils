@@ -2,7 +2,7 @@ includes:
     - template: Container-Scanning.gitlab-ci.yml
 
 variables:
-    - IMAGE: "$CI_REGISTRY_IMAGE/bitcoin/${tag}"
+    - IMAGE: "$CI_REGISTRY_IMAGE/faucet/${tag}"
 stages:
     - build
     # - test TODO 
