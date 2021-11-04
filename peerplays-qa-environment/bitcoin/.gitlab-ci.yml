@@ -6,7 +6,7 @@ stages:
     - test
 
 docker-build:
-  image: ubuntu-for-peerplays:latest
+  image: docker:latest
   stage: build
   services:
     - docker:19.03.12-dind
