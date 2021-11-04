@@ -5,39 +5,39 @@ bitcoin:
   stage: triggers
   trigger:
     include: bitcoin/.gitlab-ci.yml
-  rules:
-    - changes:
-        - bitcoin/*
+  # rules:
+  #   - changes:
+  #       - bitcoin/*
 
 faucet:
   stage: triggers
   trigger:
     include: faucet/.gitlab-ci.yml
-  rules:
-    - changes:
-        - faucet/*
+  # rules:
+  #   - changes:
+  #       - faucet/*
     
-hive:
-  stage: triggers
-  trigger:
-    include: hive/.gitlab-ci.yml
-  rules:
-    - changes:
-        - hive/*
+# hive:
+#   stage: triggers
+#   trigger:
+#     include: hive/.gitlab-ci.yml
+#   rules:
+#     - changes:
+#         - hive/*
 
-peerplays:
-  stage: triggers
-  trigger:
-    include: peerplays/.gitlab-ci.yml
-  rules:
-    - changes:
-        - peerplays/*
+# peerplays:
+#   stage: triggers
+#   trigger:
+#     include: peerplays/.gitlab-ci.yml
+#   rules:
+#     - changes:
+#         - peerplays/*
 
 
-ubuntu:
-  stage: triggers
-  trigger:
-    include: ubuntu/.gitlab-ci.yml
-  rules:
-    - changes:
-        - ubuntu/*
+# ubuntu:
+#   stage: triggers
+#   trigger:
+#     include: ubuntu/.gitlab-ci.yml
+#   rules:
+#     - changes:
+#         - ubuntu/*

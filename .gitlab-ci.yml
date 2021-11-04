@@ -5,6 +5,7 @@ peerplays-qa:
   stage: triggers
   trigger:
     include: peerplays-qa-environment/.gitlab-ci.yml
-  rules:
-    - changes:
-        - peerplays-qa-environment/*
+  # rules:
+  #   - changes:
+  #       - peerplays-qa-environment/*
+
