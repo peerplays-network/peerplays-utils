@@ -1,6 +1,6 @@
-includes:
+include:
     - template: Container-Scanning.gitlab-ci.yml
-    
+
 stages:
     - build
     # - test TODO 
