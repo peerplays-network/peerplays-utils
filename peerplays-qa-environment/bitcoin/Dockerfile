@@ -1,4 +1,4 @@
-FROM ubuntu-for-peerplays:latest
+FROM registry.gitlab.com/pbsa/tools-libs/peerplays-utils/ubuntu-for-peerplays:latest
 MAINTAINER PeerPlays Blockchain Standards Association
 
 WORKDIR /home/peerplays/bitcoin-network
