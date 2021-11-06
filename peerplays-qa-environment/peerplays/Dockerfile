@@ -1,4 +1,4 @@
-FROM ubuntu-for-peerplays:latest
+FROM registry.gitlab.com/pbsa/tools-libs/peerplays-utils/ubuntu-for-peerplays:latest
 MAINTAINER PeerPlays Blockchain Standards Association
 
 WORKDIR /home/peerplays/peerplays-network
@@ -47,9 +47,9 @@ RUN \
 RUN \
     ln -s ./src/peerplays/build/programs/cli_wallet/cli_wallet && \
     ln -s ./src/peerplays/build/programs/witness_node/witness_node
-ADD config.ini ./witness_node_data_dir/config.ini
-ADD genesis.json ./genesis.json
-ADD init-network.sh ./init-network.sh
+ADD peerplays-qa-environment/peerplays/config.ini ./witness_node_data_dir/config.ini
+ADD peerplays-qa-environment/peerplays/genesis.json ./genesis.json
+ADD peerplays-qa-environment/peerplays/init-network.sh ./init-network.sh
 
 RUN chown peerplays:root -R /home/peerplays/peerplays-network
 

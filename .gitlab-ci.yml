@@ -51,6 +51,45 @@ build_bitcoin:
   tags:
     - docker
 
+build_hive:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:19.03.12-dind
+  before_script:
+    - docker info
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  # Default branch leaves tag empty (= latest tag)
+  # All other branches are tagged with the escaped branch name (commit ref slug)
+  script:
+    - docker build -f peerplays-qa-environment/hive/Dockerfile.v1.25.0 -t "$CI_REGISTRY_IMAGE/hive-for-peerplays:$TAG" .
+    - docker push "$CI_REGISTRY_IMAGE/hive-for-peerplays:$TAG"
+  # Run this job in a branch where a Dockerfile exists
+  when: manual
+  tags:
+    - docker-build-qa
+
+
+build_peerplays:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:19.03.12-dind
+  before_script:
+    - docker info
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  # Default branch leaves tag empty (= latest tag)
+  # All other branches are tagged with the escaped branch name (commit ref slug)
+  script:
+    - docker build -f peerplays-qa-environment/peerplays/Dockerfile -t "$CI_REGISTRY_IMAGE/peerplays-base:$TAG" .
+    - docker push "$CI_REGISTRY_IMAGE/peerplays-base:$TAG"
+  # Run this job in a branch where a Dockerfile exists
+  when: manual
+  tags:
+    - docker-build-qa
+
+
+
 
 # build_bitcoin:
 #   stage: build
