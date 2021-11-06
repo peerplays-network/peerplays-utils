@@ -1,4 +1,4 @@
-FROM ubuntu-for-peerplays:latest
+FROM registry.gitlab.com/pbsa/tools-libs/peerplays-utils/ubuntu-for-peerplays:latest
 MAINTAINER PeerPlays Blockchain Standards Association
 
 RUN \
@@ -35,8 +35,8 @@ RUN \
     pip3 install flask-cors && \
     pip3 install flask-mail
 
-ADD config.yml ./config.yml
-ADD start.sh ./start.sh
+ADD peerplays-qa-environment/faucet/config.yml ./config.yml
+ADD peerplays-qa-environment/faucet/start.sh ./start.sh
 
 RUN sed -i 's/^}/    "QAENV": {\n        "chain_id": "7c1c72eb738b3ff1870350f85daca27e2d0f5dd25af27df7475fbd92815e421e",\n        "core_symbol": "TEST",\n        "prefix": "TEST",\n    },\n}/' env/lib/python3.8/site-packages/peerplaysbase/chains.py
 
