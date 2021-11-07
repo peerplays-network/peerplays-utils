@@ -1,9 +1,14 @@
+
+include:
+  - template: Container-Scanning.gitlab-ci.yml
+
 variables:
   TAG: latest
+  BITCOIN_IMAGE_NAME: "$CI_REGISTRY_IMAGE/bitcoin-for-peerplays:$TAG"
 
 stages:
   - build
-  #- triggers
+  - test
 
 # peerplays-qa-trigger:
 #   stage: triggers
@@ -44,8 +49,8 @@ build_bitcoin:
   # Default branch leaves tag empty (= latest tag)
   # All other branches are tagged with the escaped branch name (commit ref slug)
   script:
-    - docker build -f peerplays-qa-environment/bitcoin/Dockerfile -t "$CI_REGISTRY_IMAGE/bitcoin-for-peerplays:$TAG" .
-    - docker push "$CI_REGISTRY_IMAGE/bitcoin-for-peerplays:$TAG"
+    - docker build -f peerplays-qa-environment/bitcoin/Dockerfile -t $BITCOIN_IMAGE_NAME .
+    - docker push $BITCOIN_IMAGE_NAME
   # Run this job in a branch where a Dockerfile exists
   when: manual
   tags:
@@ -88,14 +93,7 @@ build_peerplays:
   tags:
     - docker-build-qa
 
-
-
-
-# build_bitcoin:
-#   stage: build
-
-# build_faucet:
-#   stage: build
-
-# build_hive:
-#   stage: build
+container_scanning_bitcoin:
+  stage: test
+  variables:
+    DOCKER_IMAGE: $BITCOIN_IMAGE_NAME
