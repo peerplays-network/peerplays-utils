@@ -4,6 +4,7 @@ include:
 
 variables:
   TAG: latest
+  UBUNTU_IMAGE_NAME: "$CI_REGISTRY_IMAGE/ubuntu-for-peerplays:$TAG"
   BITCOIN_IMAGE_NAME: "$CI_REGISTRY_IMAGE/bitcoin-for-peerplays:$TAG"
 
 stages:
@@ -93,7 +94,17 @@ build_peerplays:
   tags:
     - docker-build-qa
 
+container_scanning:
+  variables:
+    DOCKER_IMAGE: $UBUNTU_IMAGE_NAME
+
 container_scanning_bitcoin:
-  stage: test
+  extends: .container_scanning
   variables:
     DOCKER_IMAGE: $BITCOIN_IMAGE_NAME
+
+# container_scanning_bitcoin:
+#   extends: .container_scanning
+#   variables:
+#     DOCKER_IMAGE: $BITCOIN_IMAGE_NAME
+
