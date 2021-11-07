@@ -98,10 +98,10 @@ container_scanning:
   variables:
     DOCKER_IMAGE: $UBUNTU_IMAGE_NAME
 
-container_scanning_bitcoin:
-  extends: .container_scanning
-  variables:
-    DOCKER_IMAGE: $BITCOIN_IMAGE_NAME
+# container_scanning_bitcoin:
+#   extends: .container_scanning
+#   variables:
+#     DOCKER_IMAGE: $BITCOIN_IMAGE_NAME
 
 # container_scanning_bitcoin:
 #   extends: .container_scanning
