@@ -1,25 +1,30 @@
 
-include:
-  - template: Container-Scanning.gitlab-ci.yml
 
 variables:
   TAG: latest
   UBUNTU_IMAGE_NAME: "$CI_REGISTRY_IMAGE/ubuntu-for-peerplays:$TAG"
   BITCOIN_IMAGE_NAME: "$CI_REGISTRY_IMAGE/bitcoin-for-peerplays:$TAG"
+  PEERPLAYS_IMAGE_NAME: "$CI_REGISTRY_IMAGE/peerplays-base:$TAG"
+  FAUCET_IMAGE_NAME: "$CI_REGISTRY_IMAGE/faucet-for-peerplays:$TAG"
+  HIVE_IMAGE_NAME: "$CI_REGISTRY_IMAGE/hive-for-peerplays:$TAG"
 
 stages:
   - build
-  - test
 
-# peerplays-qa-trigger:
-#   stage: triggers
-#   trigger:
-#     include: peerplays-qa-environment/.gitlab-ci.yml
-#   strategy: depend
-#   # rules:
-#   #   - changes:
-#   #       - peerplays-qa-environment/*
-
+build_ubuntu:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:19.03.12-dind
+  before_script:
+    - docker info
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - docker build -f peerplays-qa-environment/ubuntu/Dockerfile -t $UBUNTU_IMAGE_NAME .
+    - docker push $UBUNTU_IMAGE_NAME
+  when: manual
+  tags:
+    - docker
 
 build_faucet:
   stage: build
@@ -29,12 +34,9 @@ build_faucet:
   before_script:
     - docker info
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-  # Default branch leaves tag empty (= latest tag)
-  # All other branches are tagged with the escaped branch name (commit ref slug)
   script:
-    - docker build -f peerplays-qa-environment/faucet/Dockerfile -t "$CI_REGISTRY_IMAGE/faucet-for-peerplays:latest" .
-    - docker push "$CI_REGISTRY_IMAGE/faucet-for-peerplays:latest"
-  # Run this job in a branch where a Dockerfile exists
+    - docker build -f peerplays-qa-environment/faucet/Dockerfile -t $FAUCET_IMAGE_NAME .
+    - docker push $FAUCET_IMAGE_NAME
   when: manual
   tags:
     - docker
@@ -47,12 +49,9 @@ build_bitcoin:
   before_script:
     - docker info
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-  # Default branch leaves tag empty (= latest tag)
-  # All other branches are tagged with the escaped branch name (commit ref slug)
   script:
     - docker build -f peerplays-qa-environment/bitcoin/Dockerfile -t $BITCOIN_IMAGE_NAME .
     - docker push $BITCOIN_IMAGE_NAME
-  # Run this job in a branch where a Dockerfile exists
   when: manual
   tags:
     - docker
@@ -65,12 +64,9 @@ build_hive:
   before_script:
     - docker info
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-  # Default branch leaves tag empty (= latest tag)
-  # All other branches are tagged with the escaped branch name (commit ref slug)
   script:
-    - docker build -f peerplays-qa-environment/hive/Dockerfile.v1.25.0 -t "$CI_REGISTRY_IMAGE/hive-for-peerplays:$TAG" .
-    - docker push "$CI_REGISTRY_IMAGE/hive-for-peerplays:$TAG"
-  # Run this job in a branch where a Dockerfile exists
+    - docker build -f peerplays-qa-environment/hive/Dockerfile.v1.25.0 -t $HIVE_IMAGE_NAME .
+    - docker push $HIVE_IMAGE_NAME
   when: manual
   tags:
     - docker-build-qa
@@ -84,27 +80,10 @@ build_peerplays:
   before_script:
     - docker info
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-  # Default branch leaves tag empty (= latest tag)
-  # All other branches are tagged with the escaped branch name (commit ref slug)
   script:
-    - docker build -f peerplays-qa-environment/peerplays/Dockerfile -t "$CI_REGISTRY_IMAGE/peerplays-base:$TAG" .
-    - docker push "$CI_REGISTRY_IMAGE/peerplays-base:$TAG"
-  # Run this job in a branch where a Dockerfile exists
+    - docker build -f peerplays-qa-environment/peerplays/Dockerfile -t $PEERPLAYS_IMAGE_NAME .
+    - docker push $PEERPLAYS_IMAGE_NAME
   when: manual
   tags:
     - docker-build-qa
-
-container_scanning:
-  variables:
-    DOCKER_IMAGE: $UBUNTU_IMAGE_NAME
-
-# container_scanning_bitcoin:
-#   extends: .container_scanning
-#   variables:
-#     DOCKER_IMAGE: $BITCOIN_IMAGE_NAME
-
-# container_scanning_bitcoin:
-#   extends: .container_scanning
-#   variables:
-#     DOCKER_IMAGE: $BITCOIN_IMAGE_NAME
 
