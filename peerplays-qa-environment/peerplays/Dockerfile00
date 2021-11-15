@@ -1,4 +1,4 @@
-FROM peerplays-base:latest
+FROM registry.gitlab.com/pbsa/tools-libs/peerplays-utils/peerplays-base:latest
 MAINTAINER PeerPlays Blockchain Standards Association
 
 # Peerplays RPC

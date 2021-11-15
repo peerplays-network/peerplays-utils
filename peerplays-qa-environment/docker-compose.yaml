@@ -1,16 +1,10 @@
 version: "3"
 services:
     ubuntu-for-peerplays:
-        build:
-            context: ubuntu
-            dockerfile: Dockerfile
-        image: ubuntu-for-peerplays
+        image: registry.gitlab.com/pbsa/tools-libs/peerplays-utils/ubuntu-for-peerplays
         ports:
             - "2000:22"
     peerplays-base:
-        build:
-            context: peerplays
-            dockerfile: Dockerfile
         depends_on:
             - ubuntu-for-peerplays
-        image: peerplays-base
+        image: registry.gitlab.com/pbsa/tools-libs/peerplays-utils/peerplays-base

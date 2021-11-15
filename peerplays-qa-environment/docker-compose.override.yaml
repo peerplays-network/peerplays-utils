@@ -9,12 +9,9 @@ services:
 # ------------------------------------------------------------
 # ------------------------------------------------------------
     bitcoin-for-peerplays:
-        build:
-            context: bitcoin
-            dockerfile: Dockerfile
         depends_on:
             - ubuntu-for-peerplays
-        image: bitcoin-for-peerplays
+        image: registry.gitlab.com/pbsa/tools-libs/peerplays-utils/bitcoin-for-peerplays
         networks:
             peerplays-network:
                 ipv4_address: 10.11.12.201
@@ -25,12 +22,9 @@ services:
         restart: always
 # ------------------------------------------------------------
     hive-for-peerplays:
-        build:
-            context: hive
-            dockerfile: Dockerfile.v1.25.0
         depends_on:
             - ubuntu-for-peerplays
-        image: hive-for-peerplays
+        image: registry.gitlab.com/pbsa/tools-libs/peerplays-utils/hive-for-peerplays
         networks:
             peerplays-network:
                 ipv4_address: 10.11.12.202
@@ -41,12 +35,9 @@ services:
 # ------------------------------------------------------------
 # ------------------------------------------------------------
     faucet-for-peerplays:
-        build:
-            context: faucet
-            dockerfile: Dockerfile
         depends_on:
             - ubuntu-for-peerplays
-        image: faucet-for-peerplays
+        image: registry.gitlab.com/pbsa/tools-libs/peerplays-utils/faucet-for-peerplays
         networks:
             peerplays-network:
                 ipv4_address: 10.11.12.50
