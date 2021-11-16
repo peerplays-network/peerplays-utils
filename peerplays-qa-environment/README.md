@@ -31,7 +31,7 @@ It features:
 ## Downloading the docker images from registry
 Docker images should be downloaded from the container registry.
 ```
-docker login registry.gitlab.com -u peerplays-qa -p <token>
+docker login registry.gitlab.com -u peerplays-qa -p TERF5_TuQEJLVayTCLhz
 ```
 Pull the images needed using the below commands. The latest images from the registry would be downloaded. 
 ```
