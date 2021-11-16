@@ -28,11 +28,20 @@ It features:
 - 48 sidechain address mappings, 96 addresses in total, belonging to user accounts on BTC, Hive and Peerplays networks
 - Decreased maintenance_interval and committee_proposal_review_period, to 10 minutes
 
-## Building docker images
-Building docker images will take some time, as the software will be built from scratch.
+## Downloading the docker images from registry
+Docker images should be downloaded from the container registry.
 ```
-docker-compose build
+docker login registry.gitlab.com -u peerplays-qa -p <token>
 ```
+Pull the images needed using the below commands. The latest images from the registry would be downloaded. 
+```
+docker pull registry.gitlab.com/pbsa/tools-libs/peerplays-utils/ubuntu-for-peerplays
+docker pull registry.gitlab.com/pbsa/tools-libs/peerplays-utils/peerplays-base
+docker pull registry.gitlab.com/pbsa/tools-libs/peerplays-utils/bitcoin-for-peerplays
+docker pull registry.gitlab.com/pbsa/tools-libs/peerplays-utils/faucet-for-peerplays
+docker pull registry.gitlab.com/pbsa/tools-libs/peerplays-utils/hive-for-peerplays
+```
+If you want a image with particular tag to be pulled, then goto Packages&Registries --> Container Registry. Click on the image which you need which will you take to the page where all the available tags(versions) for the images are shown. Use those tag to download/pull the image.
 
 ## Starting containers
 Do not use this!!! Some components are mutually exclusive, and can not run side by side.
