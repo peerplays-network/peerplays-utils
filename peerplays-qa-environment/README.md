@@ -41,7 +41,7 @@ docker pull registry.gitlab.com/pbsa/tools-libs/peerplays-utils/bitcoin-for-peer
 docker pull registry.gitlab.com/pbsa/tools-libs/peerplays-utils/faucet-for-peerplays
 docker pull registry.gitlab.com/pbsa/tools-libs/peerplays-utils/hive-for-peerplays
 ```
-If you want a image with particular tag to be pulled, then goto Packages&Registries --> Container Registry. Click on the image which you need which will you take to the page where all the available tags(versions) for the images are shown. Use those tag to download/pull the image.
+If a image with particular tag is to be pulled, then goto Packages&Registries --> Container Registry. Click on the image which you need which will you take to the page where all the available tags(versions) for the images are shown. Use those tag to download/pull the image.
 
 ## Starting containers
 Do not use this!!! Some components are mutually exclusive, and can not run side by side.
