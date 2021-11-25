@@ -1,0 +1,27 @@
+This document contains information about the images which are being used/pulled.
+
+1. ubuntu-for-peerplays
+    a. Image name : registry.gitlab.com/pbsa/tools-libs/peerplays-utils/ubuntu-for-peerplays
+    b. Usage: This is image will be the base image for building the peerplays, bitcoin, faucet
+
+2. peerplays-base:
+    a. Image name: registry.gitlab.com/pbsa/tools-libs/peerplays-utils/peerplays-base
+    b. Usage: This is the image that will be used for the peerplays nodes (witness, SONs)
+
+3. bitcoin-for-peerplays
+    a. Image name: registry.gitlab.com/pbsa/tools-libs/peerplays-utils/bitcoin-for-peerplays
+    b. Usage: This is the image is used for the local bitcoin Testnet.
+
+4. hive-for-peerplays
+    a. Image name: registry.gitlab.com/pbsa/tools-libs/peerplays-utils/hive-for-peerplays
+    b. Usage: This is the image is used for the local hive Testnet.
+
+5. faucet-for-peerplays
+    a. Image name: registry.gitlab.com/pbsa/tools-libs/peerplays-utils/faucet-for-peerplays
+    b. Usage: This image is for the faucet application
+
+Information notes:
+a. All the above images are already built and stored in the gitlab registry. 
+b. The bitcoin-for-peerplays, hive-for-peerplays, faucet-for-peerplays images are be used right away to launch the containers as instructed in the README.md file.
+c. The image ubuntu-for-peerplays is used as base image for the other images - peerplays-base, bitcoin-for-peerplays, faucet-for-peerplays
+d. The image peerplays-base is used as base image for the peerplay nodes - witness, SON nodes. 
