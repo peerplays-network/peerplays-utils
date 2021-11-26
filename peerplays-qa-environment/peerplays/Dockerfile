@@ -11,7 +11,7 @@ RUN \
     cd src && \
     git clone https://gitlab.com/PBSA/peerplays.git && \
     cd peerplays && \
-    git checkout feature/son-for-hive && \
+    git checkout develop && \
     git submodule update --init --recursive && \
     git branch --show-current && \
     git log --oneline -n 5
