@@ -21,7 +21,7 @@ RUN \
     cd src/peerplays && \
     mkdir build && \
     cd build && \
-    cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_MULTIPLE_SONS=1 ..
+    cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_MULTIPLE_SONS=1 -DBUILD_PEERPLAYS_TESTNET=1 ..
 
 # Build Peerplays
 RUN \
@@ -36,7 +36,7 @@ RUN \
     git branch --show-current && \
     git log --oneline -n 5 && \
     cd build && \
-    cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_MULTIPLE_SONS=1 ..
+    cmake -DCMAKE_BUILD_TYPE=Debug -DENABLE_MULTIPLE_SONS=1 -DBUILD_PEERPLAYS_TESTNET=1 ..
 
 # Build Peerplays
 RUN \
