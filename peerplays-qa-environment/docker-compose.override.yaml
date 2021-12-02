@@ -62,6 +62,21 @@ services:
         restart: always
 # ------------------------------------------------------------
 # ------------------------------------------------------------
+    peerplays-mainnet:
+        build:
+            context: peerplays-mainnet
+            dockerfile: Dockerfile
+        depends_on:
+            - peerplays-base
+        image: peerplays-mainnet
+        networks:
+            peerplays-network:
+                ipv4_address: 10.11.12.101
+        ports:
+            - "8090:8090"
+            - "9777:9777"
+        restart: always
+# ------------------------------------------------------------
     peerplays-all-in-one:
         build:
             context: peerplays
