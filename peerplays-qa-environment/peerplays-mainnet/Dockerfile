@@ -14,7 +14,10 @@ RUN \
     git checkout develop && \
     git submodule update --init --recursive && \
     git branch --show-current && \
-    git log --oneline -n 5
+    git log --oneline -n 5 && \
+    # Obtain version
+    mkdir /etc/peerplays && \
+    git rev-parse --short HEAD > /etc/peerplays/version
 
 # Configure Peerplays
 RUN \
@@ -46,14 +49,25 @@ RUN \
 # Setup Peerplays runimage
 RUN \
     ln -s ./src/peerplays/build/programs/cli_wallet/cli_wallet && \
-    ln -s ./src/peerplays/build/programs/witness_node/witness_node
-
-RUN chown peerplays:root -R /home/peerplays/peerplays-network
+    ln -s ./src/peerplays/build/programs/witness_node/witness_node 
 
 # Peerplays RPC
 EXPOSE 8090
 # Peerplays P2P:
 EXPOSE 9777
+EXPOSE 19777
+EXPOSE 29777
+EXPOSE 39777
+EXPOSE 49777
+EXPOSE 59777
+
+# default exec/config files
+ADD default_config.ini config.ini
+ADD logging.ini logging.ini
+ADD peerplaysentry.sh /usr/local/bin/peerplaysentry.sh
+RUN chmod a+x /usr/local/bin/peerplaysentry.sh
+
+RUN chown peerplays:root -R /home/peerplays/peerplays-network
 
 # Peerplays
-CMD ["./witness_node", "-d", "./witness_node_data_dir"]
+CMD ["/usr/local/bin/peerplaysentry.sh"]
